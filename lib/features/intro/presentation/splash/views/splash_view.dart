@@ -2,8 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:joblink/core/storage/app_preferences.dart';
 import 'package:joblink/core/utils/app_assets.dart';
 import 'package:joblink/core/utils/app_router.dart';
+import 'package:joblink/core/utils/service_locator.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -62,9 +64,15 @@ class _SplashViewState extends State<SplashView> {
     
   }
   void navigateToHome() {
+     final appPrefs = sl<AppPreferences>();
+  final hasSeenIntro = appPrefs.hasSeenOnboarding();
     Future.delayed(const Duration(seconds: 2), () {
+      if (hasSeenIntro) {
+        GoRouter.of(context).go(AppRouter.kLoginView);
+      } else {
+        GoRouter.of(context).go(AppRouter.kOnBoardingView);
+      }
       
-      GoRouter.of(context).go(AppRouter.kOnBoardingView);
     });
   }
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:joblink/core/storage/app_preferences.dart';
+import 'package:joblink/core/utils/app_router.dart';
 import 'package:joblink/core/utils/app_styles.dart';
+import 'package:joblink/core/utils/service_locator.dart';
 import 'package:joblink/core/widgets/custom_button.dart';
 import 'package:joblink/features/intro/data/models/on_boarding_model.dart';
 import 'package:joblink/features/intro/presentation/on_boarding/widgets/on_boarding_app_bar.dart';
@@ -67,11 +71,17 @@ class OnBoardingItem extends StatelessWidget {
             padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
             child: CustomButton(
               text: data.buttonText,
-              onPressed: () {
-                controller.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.fastLinearToSlowEaseIn,
-                );
+              onPressed: () async {
+                if (data.buttonText == 'Get Started') {
+                  final appPrefs = sl<AppPreferences>();
+                  await appPrefs.setOnboardingSeen();
+                  GoRouter.of(context).go(AppRouter.kLoginView);
+                } else {
+                  controller.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                  );
+                }
               },
             ),
           ),

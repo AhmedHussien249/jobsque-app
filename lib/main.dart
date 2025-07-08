@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:joblink/core/utils/app_router.dart';
+import 'package:joblink/core/utils/service_locator.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initServiceLocator();
   runApp(const MyApp());
 }
 
