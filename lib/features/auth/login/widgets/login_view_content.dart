@@ -30,6 +30,7 @@ class _LoginBodyContentState extends State<LoginBodyContent> {
       final email = userNameController.text.trim();
       final password = passwordController.text;
       log('Email: $email, Password: $password');
+      
     }
   }
 

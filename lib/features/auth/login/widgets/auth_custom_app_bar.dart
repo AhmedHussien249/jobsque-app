@@ -18,6 +18,7 @@ class AuthCustomAppBar extends StatelessWidget {
                 ),
               )
             : const Spacer(),
+        const Spacer(),
         Image.asset(AppAssets.logo, height: 19, width: 81),
       ],
     );

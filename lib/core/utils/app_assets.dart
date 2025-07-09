@@ -5,4 +5,5 @@ class AppAssets {
   static const String onBoarding3 = 'assets/images/onBoarding3.png';
   static const String google = 'assets/images/google.png';
   static const String facebook = 'assets/images/Facebook.png';
+  static const String sms = 'assets/icons/sms.svg';
 }
