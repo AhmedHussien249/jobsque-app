@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'JobLink',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue,scaffoldBackgroundColor: Colors.white),
+      theme: ThemeData(primarySwatch: Colors.blue,scaffoldBackgroundColor: Colors.white,),
       routerConfig: AppRouter.router,
     );
   }
