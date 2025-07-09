@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joblink/core/utils/app_styles.dart';
+import 'package:jobsque/core/utils/app_styles.dart';
 
 class SocialButton extends StatelessWidget {
   const SocialButton({super.key, required this.asset, required this.label});

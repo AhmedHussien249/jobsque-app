@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:joblink/core/utils/app_strings.dart';
-import 'package:joblink/core/utils/app_styles.dart';
-import 'package:joblink/core/widgets/custom_text_form_field.dart';
-import 'package:joblink/features/auth/login/widgets/auth_custom_app_bar.dart';
+import 'package:jobsque/core/utils/app_strings.dart';
+import 'package:jobsque/core/utils/app_styles.dart';
+import 'package:jobsque/core/widgets/custom_text_form_field.dart';
+import 'package:jobsque/features/auth/login/widgets/auth_custom_app_bar.dart';
+
 
 class LoginFormSection extends StatelessWidget {
   const LoginFormSection({

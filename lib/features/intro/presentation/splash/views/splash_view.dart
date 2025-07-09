@@ -2,10 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:joblink/core/storage/app_preferences.dart';
-import 'package:joblink/core/utils/app_assets.dart';
-import 'package:joblink/core/utils/app_router.dart';
-import 'package:joblink/core/utils/service_locator.dart';
+import 'package:jobsque/core/storage/app_preferences.dart';
+import 'package:jobsque/core/utils/app_assets.dart';
+import 'package:jobsque/core/utils/app_router.dart';
+import 'package:jobsque/core/utils/service_locator.dart';
+
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});

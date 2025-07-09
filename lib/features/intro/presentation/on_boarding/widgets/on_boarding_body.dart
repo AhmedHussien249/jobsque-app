@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:joblink/features/intro/data/models/on_boarding_model.dart';
-import 'package:joblink/features/intro/presentation/on_boarding/widgets/on_boarding_item.dart';
+import 'package:jobsque/features/intro/data/models/on_boarding_model.dart';
+import 'package:jobsque/features/intro/presentation/on_boarding/widgets/on_boarding_item.dart';
+
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});

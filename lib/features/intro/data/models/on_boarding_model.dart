@@ -1,4 +1,5 @@
-import 'package:joblink/core/utils/app_assets.dart';
+
+import 'package:jobsque/core/utils/app_assets.dart';
 
 class OnBoardingModel {
   final String title;

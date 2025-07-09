@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joblink/core/utils/app_assets.dart';
+import 'package:jobsque/core/utils/app_assets.dart';
 
 class AuthCustomAppBar extends StatelessWidget {
   const AuthCustomAppBar({super.key, required this.hasBackButton});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:joblink/features/auth/login/widgets/login_view_content.dart';
+import 'package:jobsque/features/auth/login/widgets/login_view_content.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

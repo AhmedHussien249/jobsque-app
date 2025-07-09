@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:joblink/core/utils/app_router.dart';
-import 'package:joblink/core/utils/service_locator.dart';
+import 'package:jobsque/core/utils/app_router.dart';
+import 'package:jobsque/core/utils/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
