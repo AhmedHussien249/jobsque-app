@@ -4,7 +4,7 @@ import 'package:jobsque/core/utils/app_assets.dart';
 import 'package:jobsque/core/utils/app_strings.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
-import 'package:jobsque/features/auth/login/widgets/social_button.dart';
+import 'package:jobsque/features/auth/presentation/widgets/social_button.dart';
 
 
 class LoginBottomSection extends StatelessWidget {

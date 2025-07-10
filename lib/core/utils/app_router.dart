@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
-import 'package:jobsque/features/auth/forget_password/views/check_your_email_view.dart';
-import 'package:jobsque/features/auth/forget_password/views/create_new_password_view.dart';
-import 'package:jobsque/features/auth/forget_password/views/forget_password_view.dart';
-import 'package:jobsque/features/auth/forget_password/views/password_changed_view.dart';
-import 'package:jobsque/features/auth/login/views/login_view.dart';
-import 'package:jobsque/features/intro/presentation/on_boarding/views/on_boarding_view.dart';
-import 'package:jobsque/features/intro/presentation/splash/views/splash_view.dart';
+import 'package:jobsque/features/auth/presentation/views/check_your_email_view.dart';
+import 'package:jobsque/features/auth/presentation/views/create_new_password_view.dart';
+import 'package:jobsque/features/auth/presentation/views/forget_password_view.dart';
+import 'package:jobsque/features/auth/presentation/views/password_changed_view.dart';
+import 'package:jobsque/features/auth/presentation/views/login_view.dart';
+import 'package:jobsque/features/intro/presentation/views/on_boarding_view.dart';
+import 'package:jobsque/features/intro/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
   static const kOnBoardingView = '/onBoardingView';

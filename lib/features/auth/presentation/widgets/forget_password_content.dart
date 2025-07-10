@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_router.dart';
-import 'package:jobsque/features/auth/forget_password/widgets/forget_password_bottom_section.dart';
-import 'package:jobsque/features/auth/forget_password/widgets/forget_password_form_section.dart';
+import 'package:jobsque/features/auth/presentation/widgets/forget_password_bottom_section.dart';
+import 'package:jobsque/features/auth/presentation/widgets/forget_password_form_section.dart';
 
 class ForgetPasswordContent extends StatefulWidget {
   const ForgetPasswordContent({super.key});

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:jobsque/features/auth/forget_password/widgets/create_new_password_content.dart';
+import 'package:jobsque/features/auth/presentation/widgets/create_new_password_content.dart';
 
 class CreateNewPasswordView extends StatelessWidget {
   const CreateNewPasswordView({super.key});

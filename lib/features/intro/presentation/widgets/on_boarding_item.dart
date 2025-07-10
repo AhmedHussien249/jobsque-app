@@ -6,7 +6,7 @@ import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
 import 'package:jobsque/features/intro/data/models/on_boarding_model.dart';
-import 'package:jobsque/features/intro/presentation/on_boarding/widgets/on_boarding_app_bar.dart';
+import 'package:jobsque/features/intro/presentation/widgets/on_boarding_app_bar.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 

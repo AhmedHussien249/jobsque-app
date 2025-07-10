@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_router.dart';
-import 'package:jobsque/features/auth/forget_password/widgets/create_new_password_bottom.dart';
-import 'package:jobsque/features/auth/forget_password/widgets/create_new_password_form.dart';
+import 'package:jobsque/features/auth/presentation/widgets/create_new_password_bottom.dart';
+import 'package:jobsque/features/auth/presentation/widgets/create_new_password_form.dart';
 
 class CreateNewPasswordContent extends StatefulWidget {
   const CreateNewPasswordContent({super.key});

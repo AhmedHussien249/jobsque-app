@@ -1,8 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:jobsque/features/auth/login/widgets/login_bottom_section.dart';
-import 'package:jobsque/features/auth/login/widgets/login_form_section.dart';
+import 'package:jobsque/features/auth/presentation/widgets/login_bottom_section.dart';
+import 'package:jobsque/features/auth/presentation/widgets/login_form_section.dart';
 
 
 class LoginBodyContent extends StatefulWidget {
