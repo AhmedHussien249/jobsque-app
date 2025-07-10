@@ -13,8 +13,16 @@ class AppStrings {
   static const String resetPassword = 'Reset Password';
   static const String forgetPasswordSubtitle =
       'Enter the email address you used when you joined and we’ll send you instructions to reset your password.';
-      static const String rememberPassword = 'You remember your password';
-      static const String requestPasswordreset = 'Request password reset';
+  static const String rememberPassword = 'You remember your password';
+  static const String requestPasswordreset = 'Request password reset';
+  static const String checkYourEmail = 'Check your email';
+  static const String sentAReset =
+      'We have sent a reset password to your email address';
+  static const String createNewPass = 'Create New Password';
+  static const String setYourNewPass =
+      'Set your new password so you can login and acces Jobsque';
+      static const String passMustBe = 'Password must be at least 8 characters';
+      static const String bothPassMustMatch = 'Both password must match';
 
   // Common
   static const String passwordMinLength =
@@ -25,6 +33,4 @@ class AppStrings {
 
   static const String google = 'Google';
   static const String facebook = 'Facebook';
-
-  
 }

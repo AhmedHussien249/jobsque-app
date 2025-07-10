@@ -6,7 +6,6 @@ import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_text_form_field.dart';
 import 'package:jobsque/features/auth/login/widgets/auth_custom_app_bar.dart';
 
-
 class LoginFormSection extends StatelessWidget {
   const LoginFormSection({
     super.key,
@@ -55,7 +54,7 @@ class LoginFormSection extends StatelessWidget {
         const SizedBox(height: 16),
         CustomTextFormField(
           controller: passwordController,
-          label: 'Password',
+          hint: 'Password',
           isPassword: true,
           obscureText: isPasswordObscure,
           onSuffixTap: togglePasswordVisibility,

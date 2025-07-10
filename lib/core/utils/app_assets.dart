@@ -6,4 +6,6 @@ class AppAssets {
   static const String google = 'assets/images/google.png';
   static const String facebook = 'assets/images/Facebook.png';
   static const String sms = 'assets/icons/sms.svg';
+  static const String checkYourEmail = 'assets/images/Email Ilustration.png';
+  static const String openEmail = 'assets/images/open email.png';
 }
