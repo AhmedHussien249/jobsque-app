@@ -35,16 +35,16 @@ class PasswordChangedContent extends StatelessWidget {
           child: Image.asset(AppAssets.openEmail, width: 173, height: 142),
         ),
         SizedBox(height: 24),
-        Text(AppStrings.checkYourEmail, style: AppStyles.medium24),
+        Text(AppStrings.passCHanged, style: AppStyles.medium24,textAlign: TextAlign.center,),
         SizedBox(height: 12),
         Text(
-          AppStrings.sentAReset,
+          AppStrings.yourPassHasChanged,
           style: AppStyles.regular16.copyWith(color: const Color(0xff6B7280)),
           textAlign: TextAlign.center,
         ),
         Spacer(),
         CustomButton(text: 'Open email app', onPressed: () {
-          GoRouter.of(context).push( AppRouter.kCreateNewPasswordView);
+          GoRouter.of(context).pushReplacement( AppRouter.kLoginView);
         }),
       ],
     );

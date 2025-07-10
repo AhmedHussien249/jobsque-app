@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
+import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/app_strings.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
@@ -26,7 +28,9 @@ class LoginBottomSection extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).push(AppRouter.kCreateAccountView);  
+              },
               child: Text(
                 '  Register',
                 style: AppStyles.regular14.copyWith(

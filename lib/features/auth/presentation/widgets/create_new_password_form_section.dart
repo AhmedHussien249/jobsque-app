@@ -1,26 +1,23 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/utils/app_strings.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_text_form_field.dart';
 import 'package:jobsque/features/auth/presentation/widgets/auth_custom_app_bar.dart';
 
-class CreateNewPasswordForm extends StatelessWidget {
-  const CreateNewPasswordForm({
+class CreateNewPasswordFormSection extends StatelessWidget {
+  const CreateNewPasswordFormSection({
     super.key,
     required this.passwordController,
     required this.isPasswordObscure,
     required this.isRememberMeChecked,
-    required this.togglePasswordVisibility, required this.passwordController2,
-    
+    required this.togglePasswordVisibility,
+    required this.passwordController2,
   });
   final TextEditingController passwordController;
   final TextEditingController passwordController2;
   final bool isPasswordObscure;
   final bool isRememberMeChecked;
   final VoidCallback togglePasswordVisibility;
-  
 
   @override
   Widget build(BuildContext context) {

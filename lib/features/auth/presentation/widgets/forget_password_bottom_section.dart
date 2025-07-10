@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_strings.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
@@ -22,7 +23,9 @@ class ForgetPasswordBottomSection extends StatelessWidget {
             ),
             SizedBox(width: 6),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                GoRouter.of(context).pop();
+              },
               child: Text(
                 AppStrings.login,
                 style: AppStyles.medium14.copyWith(

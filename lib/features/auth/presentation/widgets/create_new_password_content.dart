@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_router.dart';
-import 'package:jobsque/features/auth/presentation/widgets/create_new_password_bottom.dart';
-import 'package:jobsque/features/auth/presentation/widgets/create_new_password_form.dart';
+import 'package:jobsque/features/auth/presentation/widgets/create_new_password_bottom_section.dart';
+import 'package:jobsque/features/auth/presentation/widgets/create_new_password_form_section.dart';
 
 class CreateNewPasswordContent extends StatefulWidget {
   const CreateNewPasswordContent({super.key});
@@ -47,7 +47,7 @@ class _CreateNewPasswordContentState extends State<CreateNewPasswordContent> {
       key: formKey,
       child: Column(
         children: [
-          CreateNewPasswordForm(
+          CreateNewPasswordFormSection(
             passwordController: passwordController,
             passwordController2: passwordController2,
             isPasswordObscure: isPasswordObscure,
@@ -55,7 +55,7 @@ class _CreateNewPasswordContentState extends State<CreateNewPasswordContent> {
             togglePasswordVisibility: togglePasswordVisibility,
           ),
           Spacer(),
-          CreateNewPasswordBottom(onLoginPressed: onResetPressed),
+          CreateNewPasswordBottomSection(onLoginPressed: onResetPressed),
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/features/auth/presentation/views/check_your_email_view.dart';
+import 'package:jobsque/features/auth/presentation/views/create_account_customization_view.dart';
+import 'package:jobsque/features/auth/presentation/views/create_account_view.dart';
 import 'package:jobsque/features/auth/presentation/views/create_new_password_view.dart';
 import 'package:jobsque/features/auth/presentation/views/forget_password_view.dart';
 import 'package:jobsque/features/auth/presentation/views/password_changed_view.dart';
@@ -14,6 +16,8 @@ abstract class AppRouter {
   static const kCheckYourEmailView = '/checkYourEmailView';
   static const kCreateNewPasswordView = '/createNewPasswordView';
   static const kPasswordChangedView = '/passwordChangedView';
+  static const kCreateAccountView = '/createAccountView';
+  static const kCreateAccountCustomizationView = '/createAccountCustomizationView';
 
   static final router = GoRouter(
     routes: [
@@ -38,6 +42,14 @@ abstract class AppRouter {
       GoRoute(
         path: kPasswordChangedView,
         builder: (context, state) => PasswordChangedView(),
+      ),
+      GoRoute(
+        path: kCreateAccountView,
+        builder: (context, state) => CreateAccountView(),
+      ),
+      GoRoute(
+        path: kCreateAccountCustomizationView,
+        builder: (context, state) => CreateAccountCustomizationView(),
       ),
     ],
   );

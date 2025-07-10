@@ -27,9 +27,9 @@ class _LoginBodyContentState extends State<LoginBodyContent> {
 
   void onLoginPressed() {
     if (formKey.currentState!.validate()) {
-      final email = userNameController.text.trim();
+      final userName = userNameController.text.trim();
       final password = passwordController.text;
-      log('Email: $email, Password: $password');
+      log('UserName: $userName, Password: $password');
       
     }
   }

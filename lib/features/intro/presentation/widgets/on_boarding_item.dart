@@ -7,7 +7,6 @@ import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
 import 'package:jobsque/features/intro/data/models/on_boarding_model.dart';
 import 'package:jobsque/features/intro/presentation/widgets/on_boarding_app_bar.dart';
-
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingItem extends StatelessWidget {
@@ -75,8 +74,9 @@ class OnBoardingItem extends StatelessWidget {
               onPressed: () async {
                 if (data.buttonText == 'Get Started') {
                   final appPrefs = sl<AppPreferences>();
-                  await appPrefs.setOnboardingSeen();
                   GoRouter.of(context).go(AppRouter.kLoginView);
+
+                  await appPrefs.setOnboardingSeen();
                 } else {
                   controller.nextPage(
                     duration: const Duration(milliseconds: 500),

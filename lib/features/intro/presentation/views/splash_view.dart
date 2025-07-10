@@ -68,6 +68,7 @@ class _SplashViewState extends State<SplashView> {
      final appPrefs = sl<AppPreferences>();
   final hasSeenIntro = appPrefs.hasSeenOnboarding();
     Future.delayed(const Duration(seconds: 2), () {
+      if(!mounted) return;
       if (hasSeenIntro) {
         GoRouter.of(context).go(AppRouter.kLoginView);
       } else {

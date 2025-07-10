@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
 
-class CreateNewPasswordBottom extends StatelessWidget {
-  const CreateNewPasswordBottom({super.key, required this.onLoginPressed});
+class CreateNewPasswordBottomSection extends StatelessWidget {
+  const CreateNewPasswordBottomSection({
+    super.key,
+    required this.onLoginPressed,
+  });
   final VoidCallback onLoginPressed;
 
   @override
