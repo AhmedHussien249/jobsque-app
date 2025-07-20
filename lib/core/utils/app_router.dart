@@ -4,8 +4,10 @@ import 'package:jobsque/features/auth/presentation/views/create_account_customiz
 import 'package:jobsque/features/auth/presentation/views/create_account_view.dart';
 import 'package:jobsque/features/auth/presentation/views/create_new_password_view.dart';
 import 'package:jobsque/features/auth/presentation/views/forget_password_view.dart';
-import 'package:jobsque/features/auth/presentation/views/password_changed_view.dart';
 import 'package:jobsque/features/auth/presentation/views/login_view.dart';
+import 'package:jobsque/features/auth/presentation/views/password_changed_view.dart';
+import 'package:jobsque/features/auth/presentation/views/prefered_location_view.dart';
+import 'package:jobsque/features/auth/presentation/views/your_account_has_been_set_up.dart';
 import 'package:jobsque/features/intro/presentation/views/on_boarding_view.dart';
 import 'package:jobsque/features/intro/presentation/views/splash_view.dart';
 
@@ -17,7 +19,10 @@ abstract class AppRouter {
   static const kCreateNewPasswordView = '/createNewPasswordView';
   static const kPasswordChangedView = '/passwordChangedView';
   static const kCreateAccountView = '/createAccountView';
-  static const kCreateAccountCustomizationView = '/createAccountCustomizationView';
+  static const kCreateAccountCustomizationView =
+      '/createAccountCustomizationView';
+  static const kPreferedLocactionView = '/preferedLocactionView';
+  static const kYourAccountHasBeenSetUp = '/yourAccountHasBeenSetUp';
 
   static final router = GoRouter(
     routes: [
@@ -50,6 +55,14 @@ abstract class AppRouter {
       GoRoute(
         path: kCreateAccountCustomizationView,
         builder: (context, state) => CreateAccountCustomizationView(),
+      ),
+      GoRoute(
+        path: kPreferedLocactionView,
+        builder: (context, state) => PreferedLocationView(),
+      ),
+      GoRoute(
+        path: kYourAccountHasBeenSetUp,
+        builder: (context, state) => YourAccountHasBeenSetUp(),
       ),
     ],
   );

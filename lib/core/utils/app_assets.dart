@@ -8,4 +8,5 @@ class AppAssets {
   static const String sms = 'assets/icons/sms.svg';
   static const String checkYourEmail = 'assets/images/Email Ilustration.png';
   static const String openEmail = 'assets/images/open email.png';
+  static const String person = 'assets/images/person.png';
 }

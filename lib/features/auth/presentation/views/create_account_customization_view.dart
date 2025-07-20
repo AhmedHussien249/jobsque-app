@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/app_strings.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
@@ -50,7 +52,7 @@ class _CreateAccountCustomizationViewState
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: CustomButton(
                   onPressed: () {
-                    // Proceed to next step
+                    GoRouter.of(context).push(AppRouter.kPreferedLocactionView);
                   },
 
                   text: 'Next',
@@ -63,4 +65,3 @@ class _CreateAccountCustomizationViewState
     );
   }
 }
-
