@@ -39,7 +39,7 @@ class LoginFormSection extends StatelessWidget {
         const SizedBox(height: 44),
         CustomTextFormField(
           controller: userNameController,
-          hint: AppStrings.userName,
+          hint: 'email',
           prefixIcon: const Icon(
             Icons.person_2_outlined,
             color: Color(0xff292D32),
@@ -60,8 +60,8 @@ class LoginFormSection extends StatelessWidget {
           onSuffixTap: togglePasswordVisibility,
           prefixIcon: const Icon(Icons.lock_outline),
           validator: (value) {
-            if (value == null || value.length < 8) {
-              return 'Password must be at least 8 characters';
+            if (value == null || value.length < 6) {
+              return 'Password must be at least 6 characters';
             }
             return null;
           },
