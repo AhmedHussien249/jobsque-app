@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/auth/data/models/user_model.dart';
@@ -22,7 +22,7 @@ class LoginCubit extends Cubit<LoginState> {
     result.fold(
       (failure) => emit(LoginFailure(failure.errorMessage)),
        (user) async {
-        // ✅ احفظ البيانات في SharedPreferences
+        // ✅ Save token to SharedPreferences
         final prefs = sl<AppPreferences>();
 
         if (rememberMe) {
@@ -33,7 +33,7 @@ class LoginCubit extends Cubit<LoginState> {
           await prefs.setUserName(user.name);
         } else {
           await prefs.setRememberMe(false);
-          await prefs.clearAll(); // اختياري: تمسح كل حاجة
+          await prefs.clearAll();
         }
 
         emit(LoginSuccess(user));

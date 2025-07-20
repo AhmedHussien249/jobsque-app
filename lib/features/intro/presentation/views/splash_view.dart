@@ -7,7 +7,6 @@ import 'package:jobsque/core/utils/app_assets.dart';
 import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 
-
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
 
@@ -16,11 +15,12 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
-   @override
+  @override
   void initState() {
     super.initState();
     navigateToHome();
   }
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -62,19 +62,25 @@ class _SplashViewState extends State<SplashView> {
         ),
       ),
     );
-    
   }
+
   void navigateToHome() {
-     final appPrefs = sl<AppPreferences>();
-  final hasSeenIntro = appPrefs.hasSeenOnboarding();
+    final appPrefs = sl<AppPreferences>();
+    final hasSeenIntro = appPrefs.hasSeenOnboarding();
+    final isLoggedIn = appPrefs.isLoggedIn();
+    final isRemembered = appPrefs.isRemembered();
     Future.delayed(const Duration(seconds: 2), () {
-      if(!mounted) return;
-      if (hasSeenIntro) {
+      if (!mounted) return;
+
+      if (isLoggedIn && isRemembered) {
+        GoRouter.of(
+          context,
+        ).go(AppRouter.kHomeView); // ✅ Skip login & onboarding
+      } else if (hasSeenIntro) {
         GoRouter.of(context).go(AppRouter.kLoginView);
       } else {
         GoRouter.of(context).go(AppRouter.kOnBoardingView);
       }
-      
     });
   }
 }

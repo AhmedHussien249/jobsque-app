@@ -3,15 +3,14 @@ import 'package:dio/dio.dart';
 /// Abstract failure class to be extended by specific error types
 abstract class Failure {
   final String errorMessage;
-
   const Failure(this.errorMessage);
 }
 
-/// Server-related failures (e.g. 400, 401, 500, timeouts, no internet, etc.)
+/// Server-related failures (e.g. timeouts, bad response, no internet, etc.)
 class ServerFailure extends Failure {
   const ServerFailure(super.errorMessage);
 
-  /// Create ServerFailure from Dio error
+  /// Factory constructor to handle different Dio errors
   factory ServerFailure.fromDioError(DioException dioError) {
     switch (dioError.type) {
       case DioExceptionType.connectionTimeout:
@@ -36,19 +35,23 @@ class ServerFailure extends Failure {
           return const ServerFailure('No internet connection.');
         }
         return const ServerFailure('Unexpected error. Please try again.');
-     
     }
   }
 
-  /// Create ServerFailure based on HTTP status code and response
+  /// Factory constructor to extract message from response
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    if (statusCode == null) {
-      return const ServerFailure('Unknown server error.');
-    }
-
-    final String message = response?['message'] ??
+    // Check all possible message keys
+    final String message =
+        response?['massage'] ?? // ❗️ your backend typo
+        response?['message'] ??
         response?['error']?['message'] ??
         'An error occurred';
+    if (message.toLowerCase().contains('wrong')) {
+      return const ServerFailure('Email or password is incorrect.');
+    }
+    if (statusCode == null) {
+      return ServerFailure(message);
+    }
 
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
       return ServerFailure(message);

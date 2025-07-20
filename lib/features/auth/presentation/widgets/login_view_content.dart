@@ -67,13 +67,13 @@ class _LoginBodyContentState extends State<LoginBodyContent> {
           final email = prefs.getUserEmail();
           final remember = prefs.isRemembered();
 
-          print('🔐 Token: $token');
-          print('📧 Email: $email');
-          print('✅ Remember Me: $remember');
+          log(' Token: $token');
+          log(' Email: $email');
+          log(' Remember Me: $remember');
 
           GoRouter.of(
             context,
-          ).pushReplacement(AppRouter.kHomeView); // Close the dialog
+          ).pushReplacement(AppRouter.kHomeView); 
           // Navigate to home or next page
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Welcome ${state.user.name}!')),
