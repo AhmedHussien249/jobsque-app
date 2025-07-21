@@ -5,6 +5,7 @@ import 'package:jobsque/core/utils/api_service.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:jobsque/features/auth/presentation/view_model/cubits/login_cubit/login_cubit.dart';
+import 'package:jobsque/features/auth/presentation/view_model/cubits/register_cubit/register_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -26,4 +27,7 @@ Future<void> initServiceLocator() async {
 
   // LoginCubit
   sl.registerFactory(() => LoginCubit(sl()));
+
+  // RegisterCubit
+  sl.registerFactory(() => RegisterCubit(sl()));
 }

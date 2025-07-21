@@ -43,7 +43,7 @@ class PasswordChangedContent extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Spacer(),
-        CustomButton(text: 'Open email app', onPressed: () {
+        CustomButton(text: 'Login', onPressed: () {
           GoRouter.of(context).pushReplacement( AppRouter.kLoginView);
         }),
       ],

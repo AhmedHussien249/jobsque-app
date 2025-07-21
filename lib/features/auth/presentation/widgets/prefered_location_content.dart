@@ -10,7 +10,7 @@ class PreferedLocationContent extends StatelessWidget {
     return ScrollConfiguration(
       behavior: const ScrollBehavior().copyWith(overscroll: false),
       child: CustomScrollView(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(child: const PreferedLocationTopSection()),
 

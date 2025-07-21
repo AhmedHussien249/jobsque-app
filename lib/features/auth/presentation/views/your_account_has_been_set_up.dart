@@ -49,7 +49,7 @@ class CheckYourEmailContent extends StatelessWidget {
         ),
         Spacer(),
         CustomButton(text: 'Get started', onPressed: () {
-          GoRouter.of(context).push( AppRouter.kCreateNewPasswordView);
+          GoRouter.of(context).push( AppRouter.kLoginView);
         }),
       ],
     );
