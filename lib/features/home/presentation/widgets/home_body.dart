@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jobsque/core/widgets/custom_text_form_field.dart';
 import 'package:jobsque/features/home/presentation/widgets/home_header_section.dart';
 import 'package:jobsque/features/home/presentation/widgets/home_recent_job_section.dart';
 import 'package:jobsque/features/home/presentation/widgets/home_suggested_job_section.dart';
@@ -23,16 +22,42 @@ class _HomeBodyState extends State<HomeBody> {
         children: [
           const HomeHeaderSection(),
           const SizedBox(height: 20),
-           CustomTextFormField(
-            hint: 'Search...',
-            prefixIcon: Icon(Icons.search), controller: searchController,
-          ),
+          CustomSearchField(),
           const SizedBox(height: 24),
           const HomeSuggestedJobSection(),
           const SizedBox(height: 24),
           const HomeRecentJobSection(),
         ],
       ),
+    );
+  }
+}
+
+class CustomSearchField extends StatelessWidget {
+  const CustomSearchField({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: 'Search...',
+        prefixIcon: const Icon(Icons.search,size: 24,),
+        border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: const BorderSide(color: Color(0xff9CA3AF), width: 1),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(24),
+            borderSide: const BorderSide(color: Color(0xff3366FF), width: 2),
+          ),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 10,
+          ),
+        ),
+      onChanged: (value) {
+        // هنا ممكن تضيف منطق البحث
+      },
     );
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jobsque/core/utils/app_assets.dart';
 
 class HomeHeaderSection extends StatelessWidget {
   const HomeHeaderSection({super.key});
@@ -22,10 +24,19 @@ class HomeHeaderSection extends StatelessWidget {
             ],
           ),
         ),
-        CircleAvatar(
-          radius: 24,
-          backgroundColor: Colors.grey[200],
-          child: Icon(Icons.notifications_none, color: Colors.black),
+        Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: Colors.grey, width: 1),
+          ),
+          child: SvgPicture.asset(
+            AppAssets.notficationapp,
+            height: 24,
+            width: 24,
+            fit: BoxFit.scaleDown,
+          ),
         ),
       ],
     );

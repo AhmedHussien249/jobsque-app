@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/observer/app_bloc_observer.dart';
 import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
@@ -17,11 +18,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Jobsque',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue,scaffoldBackgroundColor: Colors.white,),
-      routerConfig: AppRouter.router,
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      child: MaterialApp.router(
+        title: 'Jobsque',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.blue,scaffoldBackgroundColor: Colors.white,),
+        routerConfig: AppRouter.router,
+      ),
     );
   }
 }

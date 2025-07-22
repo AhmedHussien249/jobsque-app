@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  auto_size_text: ^3.0.0
+  carousel_slider: ^5.1.1
   country_picker: ^2.0.27
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
@@ -36,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_screenutil: ^5.9.3
   flutter_svg: ^2.2.0
   font_awesome_flutter: ^10.8.0
   get_it: ^8.0.3
