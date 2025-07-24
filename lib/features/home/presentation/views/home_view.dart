@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:jobsque/core/utils/app_assets.dart';
-import 'package:jobsque/core/utils/app_styles.dart';
+
 import 'package:jobsque/features/home/presentation/widgets/custom_bottom_nav_bar.dart';
 import 'package:jobsque/features/home/presentation/widgets/home_body.dart';
 

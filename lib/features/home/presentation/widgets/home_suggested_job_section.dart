@@ -1,47 +1,49 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:jobsque/core/utils/app_styles.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/suggested_job_cubit.dart';
+import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/suggested_job_state.dart';
 import 'package:jobsque/features/home/presentation/widgets/suggested_job_item.dart';
+import 'package:jobsque/core/utils/app_styles.dart';
 
 class HomeSuggestedJobSection extends StatefulWidget {
   const HomeSuggestedJobSection({super.key});
 
   @override
-  State<HomeSuggestedJobSection> createState() =>
-      _HomeSuggestedJobSectionState();
+  State<HomeSuggestedJobSection> createState() => _HomeSuggestedJobSectionState();
 }
 
 class _HomeSuggestedJobSectionState extends State<HomeSuggestedJobSection> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-  Timer? _timer;
-
+  final PageController pageController = PageController();
+  int currentPage = 0;
+  Timer? timer;
+  
   @override
   void initState() {
     super.initState();
-    _startAutoScroll();
+    startAutoScroll();
+   
   }
 
-  void _startAutoScroll() {
-    _timer = Timer.periodic(const Duration(seconds: 4), (_) {
-      if (_pageController.hasClients) {
-        _currentPage++;
-        if (_currentPage >= 3) _currentPage = 0;
+  void startAutoScroll() {
+    timer = Timer.periodic(const Duration(seconds: 4), (_) {
+      if (pageController.hasClients) {
+        currentPage++;
+        if (currentPage >= 3) currentPage = 0;
 
-        _pageController.animateToPage(
-          _currentPage,
+        pageController.animateToPage(
+          currentPage,
           duration: const Duration(milliseconds: 400),
           curve: Curves.easeInOut,
         );
       }
     });
   }
-
-  @override
+    @override
   void dispose() {
-    _timer?.cancel();
-    _pageController.dispose();
+    timer?.cancel();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -56,28 +58,36 @@ class _HomeSuggestedJobSectionState extends State<HomeSuggestedJobSection> {
             Text("Suggested Job", style: AppStyles.medium18),
             Text(
               "View all",
-              style: AppStyles.medium14.copyWith(
-                color: const Color(0xff3366FF),
-              ),
+              style: AppStyles.medium14.copyWith(color: Color(0xff3366FF)),
             ),
           ],
         ),
         const SizedBox(height: 12),
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.21,
-
-          child: PageView.builder(
-            controller: _pageController,
+          child: BlocBuilder<JobsCubit, JobsState>(
+            builder: (context, state) {
+              if (state is JobsLoading) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is JobsSuccess) {
+                return PageView.builder(
+                  itemCount: state.jobs.length,
+                  controller: pageController,
             padEnds: false,
             itemBuilder: (_, index) => Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: SuggestedJopItem(),
+              child: SuggestedJopItem(job: state.jobs[index],),
             ),
-            itemCount: 3,
+                );
+              } else if (state is JobsFailure) {
+                return Center(child: Text("Error: ${state.error}"));
+              } else {
+                return SizedBox.shrink();
+              }
+            },
           ),
         ),
       ],
     );
   }
 }
-

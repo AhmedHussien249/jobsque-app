@@ -1,20 +1,26 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
+import 'package:jobsque/features/home/data/models/jobs_model.dart';
 import 'package:jobsque/features/home/presentation/widgets/tag_suggested_job.dart';
 
 class SuggestedJopItem extends StatelessWidget {
-  const SuggestedJopItem({super.key});
+  final JobModel job;
+  String buildShortText(String text, {int maxWords = 4}) {
+    final words = text.split(' ');
+    if (words.length <= maxWords) return text;
+    return '${words.take(maxWords).join(' ')}...';
+  }
+
+  const SuggestedJopItem({super.key, required this.job});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Color(0xff091A7A),
+        color: const Color(0xff091A7A),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -22,18 +28,30 @@ class SuggestedJopItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(AppAssets.zoomLogo, height: 40, width: 40),
+              Image.network(
+                job.image,
+                height: 40,
+                width: 40,
+                errorBuilder: (_, _, _) {
+                  return Image.asset(AppAssets.zoomLogo, height: 40, width: 40);
+                },
+              ),
               const SizedBox(width: 16),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Product Designer",
+                    buildShortText(job.name, maxWords: 2),
                     style: AppStyles.medium18.copyWith(color: Colors.white),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "Zoom • United States",
+                    buildShortText(
+                      "${job.compName} • ${job.location}",
+                      maxWords: 6,
+                    ),
                     style: AppStyles.regular12.copyWith(
                       color: Color(0xff9CA3AF),
                     ),
@@ -49,26 +67,23 @@ class SuggestedJopItem extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
-            direction: Axis.horizontal,
-
             children: [
               TagSuggestedJop(
-                label: 'Fulltime',
-                color: Colors.white.withValues(alpha: .14),
+                label: job.jobTimeType,
+                color: Colors.white.withValues(alpha: 0.14),
                 textColor: Colors.white,
               ),
               TagSuggestedJop(
-                label: 'Remote',
-                color: Colors.white.withValues(alpha: .14),
+                label: "Remote",
+                color: Colors.white.withValues(alpha: 0.14),
                 textColor: Colors.white,
               ),
               TagSuggestedJop(
-                label: 'Design',
-                color: Colors.white.withValues(alpha: .14),
+                label: job.jobType,
+                color: Colors.white.withValues(alpha: 0.14),
                 textColor: Colors.white,
               ),
             ],
@@ -77,22 +92,17 @@ class SuggestedJopItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FittedBox(
-                child: Text(
-                  "\$12K-15K/Month",
-                  style: AppStyles.medium18.copyWith(color: Colors.white),
-                ),
+              Text(
+                "\$${job.salary}/ month",
+                style: AppStyles.medium18.copyWith(color: Colors.white),
               ),
               SizedBox(
-                width:
-                    MediaQuery.of(context).size.width *
-                    0.3, // 30% من عرض الشاشة
+                width: MediaQuery.of(context).size.width * 0.3,
                 height: 32,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                    foregroundColor: Color(0xff3366FF),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    backgroundColor: Color(0xff3366FF),
+                    foregroundColor: Colors.white
                   ),
                   onPressed: () {},
                   child: FittedBox(child: const Text("Apply now")),

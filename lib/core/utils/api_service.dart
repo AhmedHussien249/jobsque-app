@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:jobsque/core/storage/app_preferences.dart';
+import 'package:jobsque/core/utils/service_locator.dart';
 
 class ApiService {
   final Dio _dio;
@@ -7,14 +11,26 @@ class ApiService {
   ApiService(this._dio);
 
   // GET
-  Future<Response> get({
+ Future<Response> get({
     required String endPoint,
     Map<String, dynamic>? queryParams,
   }) async {
+    final token = sl<AppPreferences>().getToken(); // جلب التوكن من shared prefs
+
+    log('[GET] $_baseUrl$endPoint');
+    log('[TOKEN] $token');
+
     final response = await _dio.get(
       '$_baseUrl$endPoint',
       queryParameters: queryParams,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
+      ),
     );
+
     return response;
   }
 

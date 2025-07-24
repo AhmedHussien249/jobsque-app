@@ -1,11 +1,18 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
+import 'package:jobsque/features/home/data/models/jobs_model.dart';
 import 'package:jobsque/features/home/presentation/widgets/tag_recent_job.dart';
 
 class RecentJobItem extends StatelessWidget {
+  final JobModel job;
+  String buildShortText(String text, {int maxWords = 4}) {
+    final words = text.split(' ');
+    if (words.length <= maxWords) return text;
+    return '${words.take(maxWords).join(' ')}...';
+  }
+
   final String image;
   final String companyName;
   final String jobTitle;
@@ -19,16 +26,14 @@ class RecentJobItem extends StatelessWidget {
     required this.location,
     required this.image,
     required this.salary,
+    required this.job,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color:Colors.white,
-      
-      ),
+      decoration: BoxDecoration(color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,7 +41,7 @@ class RecentJobItem extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(image, height: 48, width: 48),
+              Image.network(image, height: 48, width: 48),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -54,11 +59,7 @@ class RecentJobItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              SvgPicture.asset(
-                AppAssets.saved,
-                width: 24,
-                height: 24,
-              ),
+              SvgPicture.asset(AppAssets.saved, width: 24, height: 24),
             ],
           ),
 
@@ -66,44 +67,56 @@ class RecentJobItem extends StatelessWidget {
 
           /// Tags + Salary Row
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TagRecentJob(
-                label: 'Fulltime',
-                color: Color(0xffD6E4FF),
-                textColor: Color(0xff3366FF),
-              ),
-              const SizedBox(width: 8),
-              const TagRecentJob(
-                label: 'Remote',
-                color: Color(0xffD6E4FF),
-                textColor: Color(0xff3366FF),
-              ),
-              const SizedBox(width: 8),
-              const TagRecentJob(
-                label: 'Senior',
-                color: Color(0xffD6E4FF),
-                textColor: Color(0xff3366FF),
-              ),
-              const Spacer(),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    salary,
-                    style: AppStyles.medium16.copyWith(
-                      color: const Color(0xff2E8E18),
+              // الجزء الخاص بالـ Tags
+              Expanded(
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    TagRecentJob(
+                      label: job.jobTimeType,
+                      color: Color(0xffD6E4FF),
+                      textColor: Color(0xff3366FF),
                     ),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    '/Month',
-                    style: AppStyles.regular12.copyWith(
-                      color: const Color(0xff6B7280),
+                    const TagRecentJob(
+                      label: 'Remote',
+                      color: Color(0xffD6E4FF),
+                      textColor: Color(0xff3366FF),
                     ),
-                  ),
-                ],
-              )
+                    TagRecentJob(
+                      label: job.jobType,
+                      color: Color(0xffD6E4FF),
+                      textColor: Color(0xff3366FF),
+                    ),
+                  ],
+                ),
+              ),
+
+              // الجزء الخاص بالراتب
+              
             ],
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Row(
+                 mainAxisSize: MainAxisSize.min ,
+                  children: [
+                    Text(
+                      salary,
+                      style: AppStyles.medium16.copyWith(
+                        color: const Color(0xff2E8E18),
+                      ),
+                    ),
+                    Text(
+                      '/Month',
+                      style: AppStyles.regular12.copyWith(
+                        color: const Color(0xff6B7280),
+                      ),
+                    ),
+                  ],
+                ),
           ),
         ],
       ),
