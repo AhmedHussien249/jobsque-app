@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/suggested_job_cubit.dart';
-import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/suggested_job_state.dart';
+import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_cubit.dart';
+import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_state.dart';
 import 'package:jobsque/features/home/presentation/widgets/recent_job_item.dart';
 
 class HomeRecentJobSection extends StatelessWidget {

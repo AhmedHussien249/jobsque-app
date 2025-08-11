@@ -11,14 +11,15 @@ class ApiService {
   ApiService(this._dio);
 
   // GET
- Future<Response> get({
+  Future<Response> get({
     required String endPoint,
     Map<String, dynamic>? queryParams,
   }) async {
-    final token = sl<AppPreferences>().getToken(); // جلب التوكن من shared prefs
+    final token = sl<AppPreferences>().getToken();
 
     log('[GET] $_baseUrl$endPoint');
     log('[TOKEN] $token');
+    log('[QUERY PARAMS] $queryParams');
 
     final response = await _dio.get(
       '$_baseUrl$endPoint',
@@ -31,6 +32,8 @@ class ApiService {
       ),
     );
 
+    log('[RESPONSE] Status: ${response.statusCode}');
+    log('[RESPONSE] Data: ${response.data}');
     return response;
   }
 
@@ -41,12 +44,28 @@ class ApiService {
     Map<String, dynamic>? queryParams,
     bool useFormData = true,
   }) async {
+    final token = sl<AppPreferences>().getToken();
+
+    log('[POST] $_baseUrl$endPoint');
+    log('[TOKEN] $token');
+    log('[DATA] $data');
+    log('[QUERY PARAMS] $queryParams');
+
     final body = useFormData ? FormData.fromMap(data) : data;
     final response = await _dio.post(
       '$_baseUrl$endPoint',
       data: body,
       queryParameters: queryParams,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
+      ),
     );
+
+    log('[RESPONSE] Status: ${response.statusCode}');
+    log('[RESPONSE] Data: ${response.data}');
     return response;
   }
 
@@ -57,12 +76,28 @@ class ApiService {
     Map<String, dynamic>? queryParams,
     bool useFormData = true,
   }) async {
+    final token = sl<AppPreferences>().getToken();
+
+    log('[PUT] $_baseUrl$endPoint');
+    log('[TOKEN] $token');
+    log('[DATA] $data');
+    log('[QUERY PARAMS] $queryParams');
+
     final body = useFormData ? FormData.fromMap(data) : data;
     final response = await _dio.put(
       '$_baseUrl$endPoint',
       data: body,
       queryParameters: queryParams,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
+      ),
     );
+
+    log('[RESPONSE] Status: ${response.statusCode}');
+    log('[RESPONSE] Data: ${response.data}');
     return response;
   }
 
@@ -71,10 +106,25 @@ class ApiService {
     required String endPoint,
     Map<String, dynamic>? queryParams,
   }) async {
+    final token = sl<AppPreferences>().getToken();
+
+    log('[DELETE] $_baseUrl$endPoint');
+    log('[TOKEN] $token');
+    log('[QUERY PARAMS] $queryParams');
+
     final response = await _dio.delete(
       '$_baseUrl$endPoint',
       queryParameters: queryParams,
+      options: Options(
+        headers: {
+          'Accept': 'application/json',
+          if (token != null) 'Authorization': 'Bearer $token',
+        },
+      ),
     );
+
+    log('[RESPONSE] Status: ${response.statusCode}');
+    log('[RESPONSE] Data: ${response.data}');
     return response;
   }
 }

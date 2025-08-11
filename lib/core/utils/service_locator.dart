@@ -8,7 +8,7 @@ import 'package:jobsque/features/auth/presentation/view_model/cubits/login_cubit
 import 'package:jobsque/features/auth/presentation/view_model/cubits/register_cubit/register_cubit.dart';
 import 'package:jobsque/features/home/data/repos/home_repo.dart';
 import 'package:jobsque/features/home/data/repos/home_repo_impl.dart';
-import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/suggested_job_cubit.dart';
+import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;

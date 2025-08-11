@@ -26,4 +26,43 @@ class HomeRepoImpl implements HomeRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+   @override
+  Future<Either<ServerFailure, List<JobModel>>> searchJobs(String name) async {
+    try {
+      final response = await apiService.post(
+        endPoint: "/jobs/search",
+        data: {"name": name},
+      );
+      final jobsList = (response.data['data'] as List)
+          .map((job) => JobModel.fromJson(job))
+          .toList();
+      return Right(jobsList);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<ServerFailure, List<JobModel>>> filterJobs({
+    String? name,
+    String? location,
+    String? salary,
+  }) async {
+    try {
+      final response = await apiService.post(
+        endPoint: "/jobs/filter",
+        data: {
+          if (name != null) "name": name,
+          if (location != null) "location": location,
+          if (salary != null) "salary": salary,
+        },
+      );
+      final jobsList = (response.data['data'] as List)
+          .map((job) => JobModel.fromJson(job))
+          .toList();
+      return Right(jobsList);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }

@@ -11,8 +11,8 @@ import 'package:jobsque/features/auth/presentation/views/login_view.dart';
 import 'package:jobsque/features/auth/presentation/views/password_changed_view.dart';
 import 'package:jobsque/features/auth/presentation/views/prefered_location_view.dart';
 import 'package:jobsque/features/auth/presentation/views/your_account_has_been_set_up.dart';
-import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/suggested_job_cubit.dart';
 import 'package:jobsque/features/home/presentation/views/home_view.dart';
+import 'package:jobsque/features/home/presentation/views/search_and_filter_job_view.dart';
 import 'package:jobsque/features/intro/presentation/views/on_boarding_view.dart';
 import 'package:jobsque/features/intro/presentation/views/splash_view.dart';
 
@@ -29,6 +29,7 @@ abstract class AppRouter {
   static const kPreferedLocactionView = '/preferedLocactionView';
   static const kYourAccountHasBeenSetUp = '/yourAccountHasBeenSetUp';
   static const String kHomeView = '/home';
+  static const String kSearchAndFilterJobView = '/searchAndFilterJobview';
 
   static final router = GoRouter(
     routes: [
@@ -76,12 +77,11 @@ abstract class AppRouter {
         path: kYourAccountHasBeenSetUp,
         builder: (context, state) => YourAccountHasBeenSetUp(),
       ),
+      GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
-        path: kHomeView,
-        builder: (context, state) => BlocProvider(
-          create: (context) => sl<JobsCubit>()..fetchAllJobs(),
-          child: const HomeView(),
-        ),
+        path: AppRouter.kSearchAndFilterJobView,
+        builder: (context, state) =>
+            SearchAndFilterJobView(), // بلا BlocProvider هنا كمان
       ),
     ],
   );

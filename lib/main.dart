@@ -4,12 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:jobsque/core/observer/app_bloc_observer.dart';
 import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
+import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServiceLocator();
   Bloc.observer = AppBlocObserver();
-  runApp(const MyApp());
+ runApp(
+    BlocProvider(
+      create: (_) => sl<JobsCubit>()..fetchAllJobs(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

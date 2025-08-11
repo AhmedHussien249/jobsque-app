@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomSearchField extends StatelessWidget {
-  const CustomSearchField({super.key});
+  final Function(String)? onChanged;
+  final VoidCallback? onTap;
+  const CustomSearchField({super.key, this.onChanged, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,8 @@ class CustomSearchField extends StatelessWidget {
             vertical: 10,
           ),
         ),
-      onChanged: (value) {
-        // هنا ممكن تضيف منطق البحث
-      },
+      onChanged: onChanged,
+      onTap: onTap,
     );
   }
 }

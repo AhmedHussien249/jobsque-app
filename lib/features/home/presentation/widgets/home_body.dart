@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/widgets/custom_search_field.dart';
 import 'package:jobsque/features/home/presentation/widgets/home_header_section.dart';
 import 'package:jobsque/features/home/presentation/widgets/home_recent_job_section.dart';
@@ -23,7 +25,11 @@ class _HomeBodyState extends State<HomeBody> {
         children: [
           const HomeHeaderSection(),
           const SizedBox(height: 20),
-          CustomSearchField(),
+          CustomSearchField(
+            onTap: () {
+              GoRouter.of(context).push(AppRouter.kSearchAndFilterJobView);
+            },
+          ),
           const SizedBox(height: 24),
           const HomeSuggestedJobSection(),
           const SizedBox(height: 24),
