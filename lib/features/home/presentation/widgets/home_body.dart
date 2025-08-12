@@ -27,7 +27,7 @@ class _HomeBodyState extends State<HomeBody> {
           const SizedBox(height: 20),
           CustomSearchField(
             onTap: () {
-              GoRouter.of(context).push(AppRouter.kSearchAndFilterJobView);
+              GoRouter.of(context).push(AppRouter.kSearchView);
             },
           ),
           const SizedBox(height: 24),

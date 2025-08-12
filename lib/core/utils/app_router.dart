@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/auth/presentation/view_model/cubits/login_cubit/login_cubit.dart';
 import 'package:jobsque/features/auth/presentation/views/check_your_email_view.dart';
@@ -12,7 +13,7 @@ import 'package:jobsque/features/auth/presentation/views/password_changed_view.d
 import 'package:jobsque/features/auth/presentation/views/prefered_location_view.dart';
 import 'package:jobsque/features/auth/presentation/views/your_account_has_been_set_up.dart';
 import 'package:jobsque/features/home/presentation/views/home_view.dart';
-import 'package:jobsque/features/home/presentation/views/search_and_filter_job_view.dart';
+import 'package:jobsque/features/home/presentation/views/search_view.dart';
 import 'package:jobsque/features/intro/presentation/views/on_boarding_view.dart';
 import 'package:jobsque/features/intro/presentation/views/splash_view.dart';
 
@@ -29,7 +30,7 @@ abstract class AppRouter {
   static const kPreferedLocactionView = '/preferedLocactionView';
   static const kYourAccountHasBeenSetUp = '/yourAccountHasBeenSetUp';
   static const String kHomeView = '/home';
-  static const String kSearchAndFilterJobView = '/searchAndFilterJobview';
+  static const String kSearchView = '/searchview';
 
   static final router = GoRouter(
     routes: [
@@ -79,9 +80,10 @@ abstract class AppRouter {
       ),
       GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
-        path: AppRouter.kSearchAndFilterJobView,
-        builder: (context, state) =>
-            SearchAndFilterJobView(), // بلا BlocProvider هنا كمان
+        path: AppRouter.kSearchView,
+        builder: (context, state) => SearchView(
+          appPreferences: sl<AppPreferences>(),
+        ), // بلا BlocProvider هنا كمان
       ),
     ],
   );

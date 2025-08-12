@@ -95,28 +95,27 @@ class RecentJobItem extends StatelessWidget {
               ),
 
               // الجزء الخاص بالراتب
-              
             ],
           ),
           Align(
             alignment: Alignment.bottomRight,
             child: Row(
-                 mainAxisSize: MainAxisSize.min ,
-                  children: [
-                    Text(
-                      salary,
-                      style: AppStyles.medium16.copyWith(
-                        color: const Color(0xff2E8E18),
-                      ),
-                    ),
-                    Text(
-                      '/Month',
-                      style: AppStyles.regular12.copyWith(
-                        color: const Color(0xff6B7280),
-                      ),
-                    ),
-                  ],
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                 "\$$salary",
+                  style: AppStyles.medium16.copyWith(
+                    color: const Color(0xff2E8E18),
+                  ),
                 ),
+                Text(
+                  '/Month',
+                  style: AppStyles.regular12.copyWith(
+                    color: const Color(0xff6B7280),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

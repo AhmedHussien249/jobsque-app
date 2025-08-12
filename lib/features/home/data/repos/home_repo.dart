@@ -9,5 +9,6 @@ abstract class HomeRepo {
     String? name,
     String? location,
     String? salary,
+    Set<String>? jobTimeTypes,
   });
 }

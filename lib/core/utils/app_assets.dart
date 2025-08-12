@@ -20,5 +20,6 @@ class AppAssets {
   static const saved = 'assets/icons/saved.svg';
   static const search = 'assets/icons/search-normal.svg';
   static const notficationapp = 'assets/icons/notification.svg';
+  static const setting = 'assets/icons/setting-4.svg';
 
 }

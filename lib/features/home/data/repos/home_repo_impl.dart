@@ -43,26 +43,45 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<ServerFailure, List<JobModel>>> filterJobs({
-    String? name,
-    String? location,
-    String? salary,
-  }) async {
-    try {
-      final response = await apiService.post(
-        endPoint: "/jobs/filter",
-        data: {
-          if (name != null) "name": name,
-          if (location != null) "location": location,
-          if (salary != null) "salary": salary,
-        },
-      );
-      final jobsList = (response.data['data'] as List)
-          .map((job) => JobModel.fromJson(job))
-          .toList();
-      return Right(jobsList);
-    } catch (e) {
-      return Left(ServerFailure(e.toString()));
-    }
+Future<Either<ServerFailure, List<JobModel>>> filterJobs({
+  String? name,
+  String? location,
+  String? salary,
+  Set<String>? jobTimeTypes,
+}) async {
+  try {
+    final Map<String, dynamic> data = {};
+
+    if (name != null) data["name"] = name;
+    if (location != null) data["location"] = location;
+    if (salary != null) data["salary"] = salary;
+
+    // API ممكن ما يدعمش ارسال jobTypes، لو يدعم يبقى نضيفها
+    // اذا ما يدعمش، هنفلتر يدوي بعد الرد
+    final response = await apiService.post(
+      endPoint: "/jobs/filter",
+      data: data,
+    );
+
+    List<JobModel> jobsList = (response.data['data'] as List)
+        .map((job) => JobModel.fromJson(job))
+        .toList();
+
+    // لو API ما يدعمش فلترة jobType, نفلتر يدويًا
+    if (jobTimeTypes != null && jobTimeTypes.isNotEmpty) {
+  final normalizedSelectedTypes = jobTimeTypes.map((e) => e.toLowerCase().trim()).toSet();
+
+  jobsList = jobsList.where((job) {
+    final jobType = job.jobTimeType.toLowerCase().trim();
+    return normalizedSelectedTypes.contains(jobType);
+  }).toList();
+}
+
+
+    return Right(jobsList);
+  } catch (e) {
+    return Left(ServerFailure(e.toString()));
   }
+}
+
 }

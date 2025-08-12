@@ -1,3 +1,5 @@
+// app_preferences.dart
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPreferences {
@@ -9,6 +11,8 @@ class AppPreferences {
   static const String _keyIsDarkMode = 'isDarkMode';
   static const String _keyLanguage = 'language';
   static const String _keyRememberMe = 'rememberMe';
+
+  static const String _keySearchHistory = 'searchHistory';
 
   final SharedPreferences _prefs;
 
@@ -92,5 +96,29 @@ class AppPreferences {
   // 🔹 Clear all stored preferences (e.g., on logout)
   Future<void> clearAll() async {
     await _prefs.clear();
+  }
+
+  // ------------- Search History --------------------
+
+  Future<void> addSearchQuery(String query) async {
+    if(query.trim().isEmpty) return;
+    final history = _prefs.getStringList(_keySearchHistory) ?? [];
+    // Remove duplicates
+    history.removeWhere((element) => element.toLowerCase() == query.toLowerCase());
+    // Add to front
+    history.insert(0, query);
+    // Limit to 10 entries max
+    if (history.length > 10) {
+      history.removeLast();
+    }
+    await _prefs.setStringList(_keySearchHistory, history);
+  }
+
+  List<String> getSearchHistory() {
+    return _prefs.getStringList(_keySearchHistory) ?? [];
+  }
+
+  Future<void> clearSearchHistory() async {
+    await _prefs.remove(_keySearchHistory);
   }
 }

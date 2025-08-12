@@ -1,13 +1,17 @@
+// jobs_cubit.dart
+
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/features/home/data/repos/home_repo.dart';
 import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_state.dart';
 
 class JobsCubit extends Cubit<JobsState> {
   final HomeRepo homeRepo;
+  final AppPreferences appPreferences;  // اضفت appPreferences هنا
 
-  JobsCubit(this.homeRepo) : super(JobsInitial());
+  JobsCubit(this.homeRepo, this.appPreferences) : super(JobsInitial());
 
   void fetchAllJobs() async {
     emit(JobsLoading());
@@ -24,7 +28,16 @@ class JobsCubit extends Cubit<JobsState> {
       },
     );
   }
-   void searchJobs(String name) async {
+
+  void searchJobs(String name) async {
+    if (name.trim().isEmpty) {
+      fetchAllJobs();
+      return;
+    }
+
+    // حفظ البحث في سجل البحث
+    await appPreferences.addSearchQuery(name);
+
     emit(JobsLoading());
     final result = await homeRepo.searchJobs(name);
     result.fold(
@@ -33,12 +46,18 @@ class JobsCubit extends Cubit<JobsState> {
     );
   }
 
-  void filterJobs({String? name, String? location, String? salary}) async {
+  void filterJobs({
+    String? name,
+    String? location,
+    String? salary,
+    Set<String>? jobTimeTypes,
+  }) async {
     emit(JobsLoading());
     final result = await homeRepo.filterJobs(
       name: name,
       location: location,
       salary: salary,
+      jobTimeTypes: jobTimeTypes,
     );
     result.fold(
       (failure) => emit(JobsFailure(failure.errorMessage)),

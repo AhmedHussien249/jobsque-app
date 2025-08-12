@@ -39,6 +39,9 @@ Future<void> initServiceLocator() async {
   sl.registerFactory(() => RegisterCubit(sl()));
 
   // SuggestedJobCubit
-  sl.registerFactory(() => JobsCubit(sl()));
+   sl.registerFactory(() => JobsCubit(
+    sl<HomeRepo>(),
+    sl<AppPreferences>(),  // لازم تمرر AppPreferences هنا
+  ));
 
 }
