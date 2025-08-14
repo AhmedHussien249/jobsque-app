@@ -51,24 +51,24 @@ Future<Either<Failure, RegisterModel>> register({
       },
     );
 
-    // اطبع شكل الريسبونس الكامل
-    log('📥 Full Register Response: ${response.toString()}');
-    log('📦 Register Response Data: ${response.data}');
+  
+    log(' Full Register Response: ${response.toString()}');
+    log(' Register Response Data: ${response.data}');
 
-    // هنا لو عايز تطبع شكل الـ JSON بطريقة منظمة:
+    
     if (response.data is Map<String, dynamic>) {
       final json = response.data as Map<String, dynamic>;
-      log('✅ Data Keys: ${json.keys}');
+      log(' Data Keys: ${json.keys}');
     }
 
     final registerModel = RegisterModel.fromJson(response.data);
     return right(registerModel);
   } on DioException catch (e) {
-    log('❌ DioException: ${e.response?.data}');
+    log(' DioException: ${e.response?.data}');
     return left(ServerFailure.fromDioError(e));
   } catch (e, stack) {
-    log('❌ General Error: $e');
-    log('📌 Stacktrace: $stack');
+    log(' General Error: $e');
+    log(' Stacktrace: $stack');
     return left(ServerFailure(e.toString()));
   }
 }

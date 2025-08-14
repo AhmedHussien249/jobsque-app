@@ -3,6 +3,7 @@ import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/auth/data/models/user_model.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
+
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -13,31 +14,31 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login({
     required String email,
     required String password,
-    required bool rememberMe
+    required bool rememberMe,
   }) async {
     emit(LoginLoading());
 
     final result = await authRepo.login(email: email, password: password);
 
-    result.fold(
-      (failure) => emit(LoginFailure(failure.errorMessage)),
-       (user) async {
-        // ✅ Save token to SharedPreferences
-        final prefs = sl<AppPreferences>();
+    result.fold((failure) => emit(LoginFailure(failure.errorMessage)), (
+      user,
+    ) async {
+      // ✅ Save token to SharedPreferences
+      final prefs = sl<AppPreferences>();
 
-        if (rememberMe) {
-          await prefs.setToken(user.token);
-          await prefs.setRememberMe(true);
-          await prefs.setLoggedIn(true);
-          await prefs.setUserEmail(user.email);
-          await prefs.setUserName(user.name);
-        } else {
-          await prefs.setRememberMe(false);
-          await prefs.clearAll();
-        }
+      if (rememberMe) {
+        await prefs.setRememberMe(true);
+      } else {
+        await prefs.setRememberMe(false);
+      }
 
-        emit(LoginSuccess(user));
-      },
-    );
+      // في الحالتين لازم تخزن التوكين وباقي البيانات طول الجلسة
+      await prefs.setToken(user.token);
+      await prefs.setLoggedIn(true);
+      await prefs.setUserEmail(user.email);
+      await prefs.setUserName(user.name);
+
+      emit(LoginSuccess(user));
+    });
   }
 }

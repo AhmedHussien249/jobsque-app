@@ -21,5 +21,6 @@ class AppAssets {
   static const search = 'assets/icons/search-normal.svg';
   static const notficationapp = 'assets/icons/notification.svg';
   static const setting = 'assets/icons/setting-4.svg';
+  static const searchIlustration = 'assets/images/Search Ilustration.png';
 
 }

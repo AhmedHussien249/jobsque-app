@@ -9,6 +9,9 @@ import 'package:jobsque/features/auth/presentation/view_model/cubits/register_cu
 import 'package:jobsque/features/home/data/repos/home_repo.dart';
 import 'package:jobsque/features/home/data/repos/home_repo_impl.dart';
 import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_cubit.dart';
+import 'package:jobsque/features/job_detail/data/repos/job_detail_repo.dart';
+import 'package:jobsque/features/job_detail/data/repos/job_detail_repo_impl.dart';
+import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -43,5 +46,16 @@ Future<void> initServiceLocator() async {
     sl<HomeRepo>(),
     sl<AppPreferences>(),  // لازم تمرر AppPreferences هنا
   ));
+
+  // JobDetailRepo
+sl.registerLazySingleton<JobDetailRepo>(
+  () => JobDetailRepoImpl(sl<ApiService>()),
+);
+
+// JobDetailCubit
+sl.registerFactory<JobDetailCubit>(
+  () => JobDetailCubit(sl<JobDetailRepo>()),
+);
+
 
 }

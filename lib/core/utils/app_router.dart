@@ -16,6 +16,8 @@ import 'package:jobsque/features/home/presentation/views/home_view.dart';
 import 'package:jobsque/features/home/presentation/views/search_view.dart';
 import 'package:jobsque/features/intro/presentation/views/on_boarding_view.dart';
 import 'package:jobsque/features/intro/presentation/views/splash_view.dart';
+import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_cubit.dart';
+import 'package:jobsque/features/job_detail/presentation/views/job_detail_view.dart';
 
 abstract class AppRouter {
   static const kOnBoardingView = '/onBoardingView';
@@ -31,6 +33,8 @@ abstract class AppRouter {
   static const kYourAccountHasBeenSetUp = '/yourAccountHasBeenSetUp';
   static const String kHomeView = '/home';
   static const String kSearchView = '/searchview';
+  static const String kJobDetailView = '/jobDetailView';
+
 
   static final router = GoRouter(
     routes: [
@@ -85,6 +89,18 @@ abstract class AppRouter {
           appPreferences: sl<AppPreferences>(),
         ), // بلا BlocProvider هنا كمان
       ),
+      GoRoute(
+  path: '$kJobDetailView/:id',
+  builder: (context, state) {
+    final jobId = int.parse(state.pathParameters['id']!);
+
+    return BlocProvider(
+      create: (context) => sl<JobDetailCubit>()..fetchJobDetail(jobId),
+      child: JobDetailView(jobId: jobId,),
+    );
+  },
+),
+
     ],
   );
 }
