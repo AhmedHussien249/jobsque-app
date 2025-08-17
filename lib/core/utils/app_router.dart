@@ -2,6 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
+import 'package:jobsque/features/apply_job/presentation/view_model/cubit/apply_job_cubit.dart';
+import 'package:jobsque/features/apply_job/presentation/views/apply_job_bio_data.dart';
+import 'package:jobsque/features/apply_job/presentation/views/apply_job_type_of_work.dart';
+import 'package:jobsque/features/apply_job/presentation/views/apply_job_upload_portfolio.dart';
 import 'package:jobsque/features/auth/presentation/view_model/cubits/login_cubit/login_cubit.dart';
 import 'package:jobsque/features/auth/presentation/views/check_your_email_view.dart';
 import 'package:jobsque/features/auth/presentation/views/create_account_customization_view.dart';
@@ -34,7 +38,9 @@ abstract class AppRouter {
   static const String kHomeView = '/home';
   static const String kSearchView = '/searchview';
   static const String kJobDetailView = '/jobDetailView';
-
+  static const String kApplyJobBioData = '/applyJobBioData';
+  static const String kApplyTypeOfWork = '/applyJobTypeOfWork';
+  static const String kApplyJobUploadPortfolio = '/applyJobUploadPortfolio';
 
   static final router = GoRouter(
     routes: [
@@ -90,17 +96,64 @@ abstract class AppRouter {
         ), // بلا BlocProvider هنا كمان
       ),
       GoRoute(
-  path: '$kJobDetailView/:id',
-  builder: (context, state) {
-    final jobId = int.parse(state.pathParameters['id']!);
+        path: '$kJobDetailView/:id',
+        builder: (context, state) {
+          final jobId = int.parse(state.pathParameters['id']!);
+           final jobType = state.uri.queryParameters['jobType'] ?? "";
 
-    return BlocProvider(
-      create: (context) => sl<JobDetailCubit>()..fetchJobDetail(jobId),
-      child: JobDetailView(jobId: jobId,),
-    );
+          return BlocProvider(
+            create: (context) => sl<JobDetailCubit>()..fetchJobDetail(jobId),
+            child: JobDetailView(jobId: jobId,jobType: jobType ,),
+          );
+        },
+      ),
+
+      GoRoute(
+  path: kApplyJobBioData,
+  builder: (context, state) {
+    final jobId = int.parse(state.uri.queryParameters['jobId']!);
+    final jobType = state.uri.queryParameters['jobType']!;
+    return ApplyJobBiodata(jobId: jobId, jobType: jobType);
   },
 ),
 
+      GoRoute(
+        path: kApplyTypeOfWork,
+        builder: (context, state) {
+          final jobId = int.parse(state.uri.queryParameters['jobId']!);
+          final name = state.uri.queryParameters['name']!;
+          final email = state.uri.queryParameters['email']!;
+          final mobile = state.uri.queryParameters['mobile']!;
+          return ApplyJobTypeOfWork(
+             jobType: state.uri.queryParameters['jobType']!,
+            jobId: jobId,
+            name: name,
+            email: email,
+            mobile: mobile,
+          );
+        },
+      ),
+
+      GoRoute(
+        path: kApplyJobUploadPortfolio,
+        builder: (context, state) {
+          final jobId = int.parse(state.uri.queryParameters['jobId']!);
+          final name = state.uri.queryParameters['name']!;
+          final email = state.uri.queryParameters['email']!;
+          final mobile = state.uri.queryParameters['mobile']!;
+          final workType = state.uri.queryParameters['workType']!;
+          return BlocProvider(
+            create: (context) => sl<ApplyJobCubit>(),
+            child: ApplyJobUploadPortfolio(
+              jobId: jobId,
+              name: name,
+              email: email,
+              mobile: mobile,
+              workType: workType,
+            ),
+          );
+        },
+      ),
     ],
   );
 }

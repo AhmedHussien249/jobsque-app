@@ -2,6 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/api_service.dart';
+import 'package:jobsque/features/apply_job/data/repos/apply_jobs_repo.dart';
+import 'package:jobsque/features/apply_job/data/repos/apply_jobs_repo_impl.dart';
+import 'package:jobsque/features/apply_job/presentation/view_model/cubit/apply_job_cubit.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo.dart';
 import 'package:jobsque/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:jobsque/features/auth/presentation/view_model/cubits/login_cubit/login_cubit.dart';
@@ -12,6 +15,9 @@ import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_j
 import 'package:jobsque/features/job_detail/data/repos/job_detail_repo.dart';
 import 'package:jobsque/features/job_detail/data/repos/job_detail_repo_impl.dart';
 import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_cubit.dart';
+import 'package:jobsque/features/show_apply_job/data/repos/applied_job_repo.dart';
+import 'package:jobsque/features/show_apply_job/data/repos/applied_job_repo_impl.dart';
+import 'package:jobsque/features/show_apply_job/presentation/view_model/cubit/show_applied_job_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -57,5 +63,22 @@ sl.registerFactory<JobDetailCubit>(
   () => JobDetailCubit(sl<JobDetailRepo>()),
 );
 
+// ApplyJobRepo
+sl.registerLazySingleton<ApplyJobsRepo>(
+  () => ApplyJobsRepoImpl(sl<ApiService>()),
+);
 
+// ApplyJobCubit
+sl.registerFactory<ApplyJobCubit>(
+  () => ApplyJobCubit(sl<ApplyJobsRepo>()),
+);
+
+sl.registerLazySingleton<ShowAppliedJobRepo>(
+  () => ShowAppliedJobRepoImpl(sl<ApiService>()),
+);
+
+// ShowAppliedJobCubit
+sl.registerFactory(
+  () => ShowAppliedJobCubit(sl<ShowAppliedJobRepo>()),
+);
 }

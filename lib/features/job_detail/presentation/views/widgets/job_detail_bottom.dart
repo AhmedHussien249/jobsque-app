@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 
 class JobDetailBottom extends StatelessWidget {
-  const JobDetailBottom({super.key});
+  const JobDetailBottom({super.key, required this.jobId, required this.jobType});
+  final int jobId;
+  final String jobType;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +20,17 @@ class JobDetailBottom extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
         ),
-        onPressed: () {},
-        child:  Text("Apply Now",style: AppStyles.medium16.copyWith(color: Colors.white),),
+        onPressed: () {
+          // Pass jobType safely
+          final safeJobType = jobType.isNotEmpty ? jobType : "Full-time";
+          GoRouter.of(context).push(
+            '${AppRouter.kApplyJobBioData}?jobId=$jobId&jobType=$safeJobType',
+          );
+        },
+        child: Text(
+          "Apply Now",
+          style: AppStyles.medium16.copyWith(color: Colors.white),
+        ),
       ),
     );
   }

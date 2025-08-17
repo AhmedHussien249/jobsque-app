@@ -78,7 +78,7 @@ class _CreateAccountContentState extends State<CreateAccountContent> {
           Navigator.pop(context);
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          ).showSnackBar(SnackBar(content: Text(state.message),backgroundColor: Colors.red,));
         }
       },
       child: Form(

@@ -38,36 +38,38 @@ class ApiService {
   }
 
   // POST (FormData)
-  Future<Response> post({
-    required String endPoint,
-    required Map<String, dynamic> data,
-    Map<String, dynamic>? queryParams,
-    bool useFormData = true,
-  }) async {
-    final token = sl<AppPreferences>().getToken();
+ Future<Response> post({
+  required String endPoint,
+  required dynamic data,
+  Map<String, dynamic>? queryParams,
+  bool useFormData = true,
+}) async {
+  final token = sl<AppPreferences>().getToken();
 
-    log('[POST] $_baseUrl$endPoint');
-    log('[TOKEN] $token');
-    log('[DATA] $data');
-    log('[QUERY PARAMS] $queryParams');
+  log('[POST] $_baseUrl$endPoint');
+  log('[TOKEN] $token');
+  log('[DATA] $data');
+  log('[QUERY PARAMS] $queryParams');
 
-    final body = useFormData ? FormData.fromMap(data) : data;
-    final response = await _dio.post(
-      '$_baseUrl$endPoint',
-      data: body,
-      queryParameters: queryParams,
-      options: Options(
-        headers: {
-          'Accept': 'application/json',
-          if (token != null) 'Authorization': 'Bearer $token',
-        },
-      ),
-    );
+  // لو data أصلاً FormData سيبها زي ما هي
+  final body = (data is FormData) ? data : (useFormData ? FormData.fromMap(data) : data);
 
-    log('[RESPONSE] Status: ${response.statusCode}');
-    log('[RESPONSE] Data: ${response.data}');
-    return response;
-  }
+  final response = await _dio.post(
+    '$_baseUrl$endPoint',
+    data: body,
+    queryParameters: queryParams,
+    options: Options(
+      headers: {
+        'Accept': 'application/json',
+        if (token != null) 'Authorization': 'Bearer $token',
+      },
+    ),
+  );
+
+  log('[RESPONSE] Status: ${response.statusCode}');
+  log('[RESPONSE] Data: ${response.data}');
+  return response;
+}
 
   // PUT (FormData)
   Future<Response> put({

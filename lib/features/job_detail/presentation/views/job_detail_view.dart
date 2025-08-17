@@ -14,8 +14,9 @@ import 'widgets/job_detail_skills.dart';
 
 class JobDetailView extends StatefulWidget {
   final int jobId;
+  final String jobType;
 
-  const JobDetailView({super.key, required this.jobId});
+  const JobDetailView({super.key, required this.jobId, required this.jobType});
 
   @override
   State<JobDetailView> createState() => _JobDetailViewState();
@@ -36,14 +37,13 @@ class _JobDetailViewState extends State<JobDetailView> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           "Job Detail",
-          style: AppStyles.medium20.copyWith(color: Color(0xff111827)),
+          style: AppStyles.medium20.copyWith(color: const Color(0xff111827)),
         ),
         centerTitle: true,
         actions: [
@@ -62,6 +62,10 @@ class _JobDetailViewState extends State<JobDetailView> {
             return Center(child: Text(state.error));
           } else if (state is JobDetailSuccess) {
             final job = state.jobDetail;
+
+            // Safety for null jobType
+            final jobTypeSafe = job.jobType.isNotEmpty ? job.jobType : "Full-time";
+
             return Stack(
               children: [
                 SingleChildScrollView(
@@ -82,8 +86,11 @@ class _JobDetailViewState extends State<JobDetailView> {
                         const SizedBox(height: 80),
                       ] else ...[
                         const SizedBox(height: 16),
-                        // Text(job.aboutComp),
-                        CompanyInformation(email: job.compEmail, website: job.compWebsite,aboutCompany: job.aboutComp,),
+                        CompanyInformation(
+                          email: job.compEmail.isNotEmpty ? job.compEmail : "N/A",
+                          website: job.compWebsite.isNotEmpty ? job.compWebsite : "N/A",
+                          aboutCompany: job.aboutComp.isNotEmpty ? job.aboutComp : "N/A",
+                        ),
                         const SizedBox(height: 80),
                       ],
                     ],
@@ -91,7 +98,7 @@ class _JobDetailViewState extends State<JobDetailView> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: JobDetailBottom(),
+                  child: JobDetailBottom(jobId: job.id, jobType: jobTypeSafe),
                 ),
               ],
             );
@@ -104,7 +111,7 @@ class _JobDetailViewState extends State<JobDetailView> {
 }
 
 class CompanyInformation extends StatelessWidget {
-  const CompanyInformation({super.key,  required this.email, required this.website, required this.aboutCompany});
+  const CompanyInformation({super.key, required this.email, required this.website, required this.aboutCompany});
   final String email;
   final String website;
   final String aboutCompany;
@@ -127,7 +134,7 @@ class CompanyInformation extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text('email'), Text(email,overflow: TextOverflow.ellipsis)],
+                  children: [Text('email'), Text(email, overflow: TextOverflow.ellipsis)],
                 ),
               ),
             ),
@@ -141,13 +148,13 @@ class CompanyInformation extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text('website'), Text(website,overflow: TextOverflow.ellipsis)],
+                  children: [Text('website'), Text(website, overflow: TextOverflow.ellipsis)],
                 ),
               ),
             ),
           ],
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         Text('About Company', style: AppStyles.medium14),
         const SizedBox(height: 8),
         Text(

@@ -39,46 +39,52 @@ class ServerFailure extends Failure {
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-  if (response is! Map) {
-    return const ServerFailure('Unexpected server response format.');
-  }
-
-  // أولاً نحاول نجيب رسالة الخطأ من أكثر من احتمال
-  dynamic rawMessage = response['massege'] ?? response['message'] ?? response['error'];
-
-  String message;
-
-  if (rawMessage is Map && rawMessage.containsKey('email')) {
-    final emailErrors = rawMessage['email'];
-    if (emailErrors is List && emailErrors.isNotEmpty) {
-      message = emailErrors.first; // زي "The email has already been taken."
-    } else {
-      message = 'Invalid email.';
+    if (response is! Map) {
+      return const ServerFailure('Unexpected server response format.');
     }
-  } else if (rawMessage is String) {
-    message = rawMessage;
-  } else {
-    message = 'An error occurred';
+
+    // دعم كل الاحتمالات لاسم المفتاح
+    dynamic rawMessage =
+        response['massege'] ??
+        response['massage'] ??
+        response['message'] ??
+        response['error'];
+
+    String message;
+
+    if (rawMessage is Map && rawMessage.containsKey('email')) {
+      final emailErrors = rawMessage['email'];
+      if (emailErrors is List && emailErrors.isNotEmpty) {
+        message = emailErrors.first; // "The email has already been taken."
+      } else {
+        message = 'Invalid email.';
+      }
+    } else if (rawMessage is String) {
+      message = rawMessage;
+    } else {
+      message = 'An error occurred';
+    }
+
+    // تخصيص رسائل معينة
+    final lowerMsg = message.toLowerCase();
+    if (lowerMsg.contains('wrong') ||
+        lowerMsg.contains('password') ||
+        lowerMsg.contains('invalid credentials')) {
+      message = 'Email or password is incorrect.';
+    }
+
+    if (statusCode == null) {
+      return ServerFailure(message);
+    }
+
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      return ServerFailure(message);
+    } else if (statusCode == 404) {
+      return const ServerFailure('Request not found (404).');
+    } else if (statusCode == 500) {
+      return const ServerFailure('Internal server error (500).');
+    } else {
+      return ServerFailure('Error $statusCode: $message');
+    }
   }
-
-  if (message.toLowerCase().contains('wrong')) {
-    return const ServerFailure('Email or password is incorrect.');
-  }
-
-  if (statusCode == null) {
-    return ServerFailure(message);
-  }
-
-  if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-    return ServerFailure(message);
-  } else if (statusCode == 404) {
-    return const ServerFailure('Request not found (404).');
-  } else if (statusCode == 500) {
-    return const ServerFailure('Internal server error (500).');
-  } else {
-    return ServerFailure('Error $statusCode: $message');
-  }
-}
-
-
 }

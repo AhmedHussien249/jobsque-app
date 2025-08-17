@@ -11,6 +11,9 @@ class AppPreferences {
   static const String _keyIsDarkMode = 'isDarkMode';
   static const String _keyLanguage = 'language';
   static const String _keyRememberMe = 'rememberMe';
+  static const String _keyUserId = 'userId';
+
+
 
   static const String _keySearchHistory = 'searchHistory';
 
@@ -56,6 +59,15 @@ class AppPreferences {
   String? getUserName() {
     return _prefs.getString(_keyUserName);
   }
+
+// حفظ userId بعد login
+Future<void> setUserId(int id) async {
+  await _prefs.setInt(_keyUserId, id);
+}
+
+int? getUserId() {
+  return _prefs.getInt(_keyUserId);
+}
 
   // 🔹 Save user's email (optional info)
   Future<void> setUserEmail(String email) async {

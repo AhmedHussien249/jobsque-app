@@ -37,6 +37,7 @@ class LoginCubit extends Cubit<LoginState> {
       await prefs.setLoggedIn(true);
       await prefs.setUserEmail(user.email);
       await prefs.setUserName(user.name);
+      await prefs.setUserId(user.id);
 
       emit(LoginSuccess(user));
     });

@@ -71,18 +71,19 @@ class _LoginBodyContentState extends State<LoginBodyContent> {
           log(' Email: $email');
           log(' Remember Me: $remember');
 
-          GoRouter.of(
-            context,
-          ).pushReplacement(AppRouter.kHomeView); 
+          GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
           // Navigate to home or next page
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Welcome ${state.user.name}!')),
+            SnackBar(
+              content: Text('Welcome ${state.user.name}!'),
+              backgroundColor: Color(0xff3366FF),
+            ),
           );
         } else if (state is LoginFailure) {
           Navigator.pop(context); // Close the dialog
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message), backgroundColor: Colors.red),
+          );
         }
       },
       child: Form(
