@@ -40,7 +40,7 @@ class ShowAppliedJobRepoImpl implements ShowAppliedJobRepo {
 
       // فلترة بالـ email (case-insensitive)
       final meOnly = allJobs.where((j) {
-        final jobEmail = (j.email ?? '').trim().toLowerCase();
+        final jobEmail = (j.email  ).trim().toLowerCase();
         return jobEmail == currentEmail.trim().toLowerCase();
       }).toList();
 

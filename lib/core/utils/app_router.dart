@@ -99,23 +99,23 @@ abstract class AppRouter {
         path: '$kJobDetailView/:id',
         builder: (context, state) {
           final jobId = int.parse(state.pathParameters['id']!);
-           final jobType = state.uri.queryParameters['jobType'] ?? "";
+          final jobType = state.uri.queryParameters['jobType'] ?? "";
 
           return BlocProvider(
             create: (context) => sl<JobDetailCubit>()..fetchJobDetail(jobId),
-            child: JobDetailView(jobId: jobId,jobType: jobType ,),
+            child: JobDetailView(jobId: jobId, jobType: jobType),
           );
         },
       ),
 
       GoRoute(
-  path: kApplyJobBioData,
-  builder: (context, state) {
-    final jobId = int.parse(state.uri.queryParameters['jobId']!);
-    final jobType = state.uri.queryParameters['jobType']!;
-    return ApplyJobBiodata(jobId: jobId, jobType: jobType);
-  },
-),
+        path: kApplyJobBioData,
+        builder: (context, state) {
+          final jobId = int.parse(state.uri.queryParameters['jobId']!);
+          final jobType = state.uri.queryParameters['jobType']!;
+          return ApplyJobBiodata(jobId: jobId, jobType: jobType);
+        },
+      ),
 
       GoRoute(
         path: kApplyTypeOfWork,
@@ -124,8 +124,8 @@ abstract class AppRouter {
           final name = state.uri.queryParameters['name']!;
           final email = state.uri.queryParameters['email']!;
           final mobile = state.uri.queryParameters['mobile']!;
-          return ApplyJobTypeOfWork(
-             jobType: state.uri.queryParameters['jobType']!,
+          return ApplyJobTypeOfWorkView(
+            jobType: state.uri.queryParameters['jobType']!,
             jobId: jobId,
             name: name,
             email: email,
