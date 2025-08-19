@@ -56,8 +56,8 @@ Future<Either<ServerFailure, List<JobModel>>> filterJobs({
     if (location != null) data["location"] = location;
     if (salary != null) data["salary"] = salary;
 
-    // API ممكن ما يدعمش ارسال jobTypes، لو يدعم يبقى نضيفها
-    // اذا ما يدعمش، هنفلتر يدوي بعد الرد
+    
+  
     final response = await apiService.post(
       endPoint: "/jobs/filter",
       data: data,
@@ -67,7 +67,7 @@ Future<Either<ServerFailure, List<JobModel>>> filterJobs({
         .map((job) => JobModel.fromJson(job))
         .toList();
 
-    // لو API ما يدعمش فلترة jobType, نفلتر يدويًا
+    
     if (jobTimeTypes != null && jobTimeTypes.isNotEmpty) {
   final normalizedSelectedTypes = jobTimeTypes.map((e) => e.toLowerCase().trim()).toSet();
 

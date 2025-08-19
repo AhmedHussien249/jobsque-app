@@ -71,11 +71,11 @@ class RecentJobItem extends StatelessWidget {
       
             const SizedBox(height: 12),
       
-            /// Tags + Salary Row
+            
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // الجزء الخاص بالـ Tags
+                
                 Expanded(
                   child: Wrap(
                     spacing: 8,
@@ -100,7 +100,7 @@ class RecentJobItem extends StatelessWidget {
                   ),
                 ),
       
-                // الجزء الخاص بالراتب
+        
               ],
             ),
             Align(

@@ -60,7 +60,7 @@ class AppPreferences {
     return _prefs.getString(_keyUserName);
   }
 
-// حفظ userId بعد login
+// 🔹 Save user's ID (for authenticated requests)
 Future<void> setUserId(int id) async {
   await _prefs.setInt(_keyUserId, id);
 }

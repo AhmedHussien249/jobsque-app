@@ -17,7 +17,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   int currentIndex = 0;
 
-  // الصفحات المرتبطة بكل عنصر في الـ bottom nav
+  
   final List<Widget> pages = [
     const HomeBody(),
     const MessagesPage(),
@@ -29,8 +29,8 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea( child: currentIndex == 2 // AppliedJobsView
-      ? pages[currentIndex] // سيبه Scaffold طبيعي من غير scroll
+      body: SafeArea( child: currentIndex == 2 
+      ? pages[currentIndex] 
       : SingleChildScrollView(child: pages[currentIndex]),
 ),
       bottomNavigationBar: CustomBottomNavBar(
@@ -45,7 +45,7 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-// Dummy Pages (ممكن تبدلهم بالـ widgets الحقيقية بتاعتك)
+
 class MessagesPage extends StatelessWidget {
   const MessagesPage({super.key});
   @override
@@ -53,12 +53,6 @@ class MessagesPage extends StatelessWidget {
       const Center(child: Text('Messages Page'));
 }
 
-// class AppliedPage extends StatelessWidget {
-//   const AppliedPage({super.key});
-//   @override
-//   Widget build(BuildContext context) =>
-//       const Center(child: Text('Applied Page'));
-// }
 
 class SavedPage extends StatelessWidget {
   const SavedPage({super.key});

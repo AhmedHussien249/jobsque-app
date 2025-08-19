@@ -32,7 +32,7 @@ class LoginCubit extends Cubit<LoginState> {
         await prefs.setRememberMe(false);
       }
 
-      // في الحالتين لازم تخزن التوكين وباقي البيانات طول الجلسة
+      
       await prefs.setToken(user.token);
       await prefs.setLoggedIn(true);
       await prefs.setUserEmail(user.email);

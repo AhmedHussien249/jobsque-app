@@ -17,8 +17,7 @@ class AppliedJobsView extends StatefulWidget {
 
 class _AppliedJobsViewState extends State<AppliedJobsView> {
   late ShowAppliedJobCubit cubit;
-  int selectedTab = 0; // 0 => Active, 1 => Rejected
-
+  int selectedTab = 0; 
   @override
   void initState() {
     super.initState();
@@ -63,7 +62,7 @@ class _AppliedJobsViewState extends State<AppliedJobsView> {
                 } else if (state is ShowAppliedJobFailure) {
                   return Center(child: Text('Error: ${state.error}'));
                 } else if (state is ShowAppliedJobSuccess) {
-                  // فلترة حسب التاب
+                  
                   final jobs = state.jobs.where((job) {
                     if (selectedTab == 0) {
                       return job.reviewed == 0 || job.accept == true;
@@ -140,7 +139,7 @@ class _AppliedJobsViewState extends State<AppliedJobsView> {
     );
   }
 
-  // ✅ Job Card UI (زي الصورة)
+  
   // ignore: strict_top_level_inference
   Widget _buildJobCard(appliedJob, jobDetail) {
     return Card(
@@ -274,11 +273,11 @@ class _AppliedJobsViewState extends State<AppliedJobsView> {
         Text(
           label,
           style: TextStyle(
-            color: done ? Color(0xff387FFB) : Colors.grey.shade600, // 👈 هنا التغيير
+            color: done ? Color(0xff387FFB) : Colors.grey.shade600, 
             fontSize: 12,
             fontWeight: done
                 ? FontWeight.bold
-                : FontWeight.normal, // 👈 عشان يبان واضح
+                : FontWeight.normal, 
           ),
         ),
       ],

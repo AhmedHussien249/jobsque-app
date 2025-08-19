@@ -9,7 +9,7 @@ import 'package:jobsque/features/show_apply_job/data/models/show_applied_job_mod
 class ApplyJobBiodata extends StatefulWidget {
   final int jobId;
   final String jobType;
-  final AppliedJobModel? appliedJob; // لو Edit هيكون فيه بيانات
+  final AppliedJobModel? appliedJob; 
 
   const ApplyJobBiodata({
     super.key,
@@ -191,7 +191,7 @@ class _ApplyJobBiodataState extends State<ApplyJobBiodata> {
                 ),
               ),
 
-              // زرار Next تحت لوحده
+              
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Align(
@@ -203,7 +203,6 @@ class _ApplyJobBiodataState extends State<ApplyJobBiodata> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xff3366FF),
-                          
                         ),
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -212,7 +211,12 @@ class _ApplyJobBiodataState extends State<ApplyJobBiodata> {
                             );
                           }
                         },
-                        child: Text(isEdit ? "Update & Next" : "Next" , style: AppStyles.medium16.copyWith(color: Colors.white),),
+                        child: Text(
+                          isEdit ? "Update & Next" : "Next",
+                          style: AppStyles.medium16.copyWith(
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ),

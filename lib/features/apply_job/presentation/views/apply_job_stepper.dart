@@ -21,7 +21,7 @@ class ApplyJobStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // الصف بتاع الدواير + الديفيدر
+        
         Row(
           children: List.generate(stepTitles.length * 2 - 1, (index) {
             if (index.isEven) {
@@ -48,7 +48,7 @@ class ApplyJobStepper extends StatelessWidget {
                 ),
               );
             } else {
-              // ده الخط بين الدواير
+          
               return Expanded(
                 child: Container(
                   height: 2,
@@ -61,7 +61,7 @@ class ApplyJobStepper extends StatelessWidget {
 
         const SizedBox(height: 6),
 
-        // الصف بتاع العناوين تحت كل دايرة بالظبط
+        
         Row(
           children: List.generate(stepTitles.length * 2 - 1, (index) {
             if (index.isEven) {
@@ -81,7 +81,7 @@ class ApplyJobStepper extends StatelessWidget {
                 ),
               );
             } else {
-              // مكان فاضي تحت الـ Divider
+              
               return const Expanded(child: SizedBox());
             }
           }),

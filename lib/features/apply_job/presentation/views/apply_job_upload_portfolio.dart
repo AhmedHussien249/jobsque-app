@@ -37,7 +37,7 @@ class _ApplyJobUploadPortfolioState extends State<ApplyJobUploadPortfolio> {
   @override
   void initState() {
     super.initState();
-    // ✅ لو Edit نحط الملفات القديمة
+    
     cvFile = widget.appliedJob?.cvFile;
     otherFile = widget.appliedJob?.otherFile;
   }

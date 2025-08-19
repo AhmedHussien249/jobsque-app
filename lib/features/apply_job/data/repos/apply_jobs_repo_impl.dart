@@ -43,7 +43,7 @@ class ApplyJobsRepoImpl implements ApplyJobsRepo {
             : MultipartFile.fromBytes([], filename: 'empty.txt'),
         "jobs_id": jobsId,
         "user_id": userId,
-        "is_update": isUpdate, // لو الـ API محتاج flag
+        "is_update": isUpdate, 
       });
 
       log("Form Data prepared: $formData");

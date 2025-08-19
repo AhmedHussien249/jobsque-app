@@ -93,7 +93,7 @@ abstract class AppRouter {
         path: AppRouter.kSearchView,
         builder: (context, state) => SearchView(
           appPreferences: sl<AppPreferences>(),
-        ), // بلا BlocProvider هنا كمان
+        ), 
       ),
       GoRoute(
         path: '$kJobDetailView/:id',

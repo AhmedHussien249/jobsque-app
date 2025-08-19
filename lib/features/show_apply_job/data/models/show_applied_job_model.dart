@@ -8,8 +8,8 @@ class AppliedJobModel {
   final String? otherFile;
   final int jobsId;
   final int userId;
-  final int reviewed; // API بيرجع 0/1
-  final bool? accept; // يمكن null أو true/false
+  final int reviewed; 
+  final bool? accept; 
   final String createdAt;
   final String updatedAt;
 
