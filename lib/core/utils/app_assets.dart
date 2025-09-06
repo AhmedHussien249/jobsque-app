@@ -22,5 +22,6 @@ class AppAssets {
   static const notficationapp = 'assets/icons/notification.svg';
   static const setting = 'assets/icons/setting-4.svg';
   static const searchIlustration = 'assets/images/Search Ilustration.png';
+  static const noSavedJob = 'assets/images/no saved job.png';
 
 }

@@ -12,6 +12,8 @@ class AppPreferences {
   static const String _keyLanguage = 'language';
   static const String _keyRememberMe = 'rememberMe';
   static const String _keyUserId = 'userId';
+    static const String _keySavedJobs = 'savedJobs';
+
 
 
 
@@ -133,4 +135,18 @@ int? getUserId() {
   Future<void> clearSearchHistory() async {
     await _prefs.remove(_keySearchHistory);
   }
+
+  // 🔹 Saved Jobs Helpers
+  List<String> getSavedJobsRaw() {
+  return _prefs.getStringList(_keySavedJobs) ?? [];
+}
+
+Future<void> setSavedJobsRaw(List<String> jobs) async {
+  await _prefs.setStringList(_keySavedJobs, jobs);
+}
+
+Future<void> clearSavedJobs() async {
+  await _prefs.remove(_keySavedJobs);
+}
+
 }

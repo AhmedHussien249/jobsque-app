@@ -31,4 +31,18 @@ class JobModel {
       image: json['image'],
     );
   }
+
+   /// 🔹 نضيف ده عشان نقدر نخزنه في SharedPreferences
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'comp_name': compName,
+      'location': location,
+      'job_type': jobType,
+      'job_time_type': jobTimeType,
+      'salary': salary,
+      'image': image,
+    };
+  }
 }
