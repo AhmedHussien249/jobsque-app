@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
-import 'package:jobsque/features/apply_job/presentation/views/apply_job_bio_data.dart';
 import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_state.dart';
 import 'package:jobsque/features/show_apply_job/presentation/view_model/cubit/show_applied_job_cubit.dart';

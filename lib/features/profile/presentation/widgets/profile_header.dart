@@ -1,15 +1,14 @@
-
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/profile/presentation/view_model/cubits/edit_profile_cubit/profile_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view_model/cubits/edit_profile_cubit/profile_state.dart';
+import 'package:jobsque/features/profile/presentation/widgets/full_screen_image_viewer.dart';
 
 class ProfileHeader extends StatelessWidget {
-  final dynamic profile; // ضع النوع الصحيح إذا معروف
+  final dynamic profile; 
   const ProfileHeader({super.key, this.profile});
 
   @override
@@ -22,19 +21,29 @@ class ProfileHeader extends StatelessWidget {
             if (state is UpdateProfileImage) {
               profileImagePath = state.imagePath;
             } else {
-              profileImagePath =
-                  sl<AppPreferences>().getProfileImage();
+              profileImagePath = sl<AppPreferences>().getProfileImage();
             }
 
-            return CircleAvatar(
-              radius: 40,
-              backgroundColor:
-                  const Color.fromARGB(255, 210, 209, 209),
-              backgroundImage: profileImagePath != null &&
-                      profileImagePath.isNotEmpty
-                  ? FileImage(File(profileImagePath))
-                  : const AssetImage("assets/images/avatar.png")
-                      as ImageProvider,
+            return GestureDetector(
+              onTap: () {
+                if (profileImagePath != null && profileImagePath.isNotEmpty) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => FullScreenImageViewer(
+                        imageProvider: FileImage(File(profileImagePath!)),
+                      ),
+                    ),
+                  );
+                }
+              },
+              child: CircleAvatar(
+                radius: 40,
+                backgroundColor: const Color.fromARGB(255, 210, 209, 209),
+                backgroundImage: profileImagePath != null && profileImagePath.isNotEmpty
+                    ? FileImage(File(profileImagePath))
+                    : const AssetImage("assets/images/avatar.png") as ImageProvider,
+              ),
             );
           },
         ),
@@ -54,3 +63,4 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 }
+

@@ -3,13 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:jobsque/features/apply_job/presentation/views/apply_job_bio_data.dart';
+import 'package:jobsque/features/job_detail/data/models/job_detail_model.dart';
+import 'package:jobsque/features/show_apply_job/data/models/show_applied_job_model.dart';
 import 'package:jobsque/features/show_apply_job/presentation/widgets/job_header.dart';
 import 'package:jobsque/features/show_apply_job/presentation/widgets/job_step.dart';
 import 'package:jobsque/features/show_apply_job/presentation/widgets/job_tag.dart';
 
 class JobCard extends StatelessWidget {
-  final appliedJob;
-  final jobDetail;
+  final AppliedJobModel appliedJob;
+  final JobDetailModel jobDetail;
 
   const JobCard({super.key, required this.appliedJob, required this.jobDetail});
 
