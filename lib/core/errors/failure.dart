@@ -43,7 +43,7 @@ class ServerFailure extends Failure {
       return const ServerFailure('Unexpected server response format.');
     }
 
-    // دعم كل الاحتمالات لاسم المفتاح
+    
     dynamic rawMessage =
         response['massege'] ??
         response['massage'] ??
@@ -65,7 +65,7 @@ class ServerFailure extends Failure {
       message = 'An error occurred';
     }
 
-    // تخصيص رسائل معينة
+    
     final lowerMsg = message.toLowerCase();
     if (lowerMsg.contains('wrong') ||
         lowerMsg.contains('password') ||

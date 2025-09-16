@@ -35,7 +35,7 @@ class JobsCubit extends Cubit<JobsState> {
       return;
     }
 
-    // حفظ البحث في سجل البحث
+
     await appPreferences.addSearchQuery(name);
 
     emit(JobsLoading());

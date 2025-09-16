@@ -18,33 +18,33 @@ class ApplyJobsRepoImpl implements ApplyJobsRepo {
     required String email,
     required String mobile,
     required String workType,
-    required String? otherFilePath,
+    String? otherFilePath,
     required int jobsId,
     required int userId,
+    bool isUpdate = false,
   }) async {
     try {
-      log("🚀 Applying for Job...");
-      log("CV Path: $cvFilePath");
-      log("Other File Path: ${otherFilePath ?? 'None'}");
+      log("🚀 ${isUpdate ? 'Updating' : 'Applying'} for Job...");
+      log("CV Path: $cvFilePath, Other File: ${otherFilePath ?? 'None'}");
       log("Name: $name, Email: $email, Mobile: $mobile, Work Type: $workType");
       log("Job ID: $jobsId, User ID: $userId");
 
-     final cvFileName = cvFilePath.split('/').last.replaceAll(' ', '_').replaceAll('&', '_');
-final otherFileName = otherFilePath?.split('/').last.replaceAll(' ', '_').replaceAll('&', '_') ?? "";
+      final cvFileName = cvFilePath.split('/').last.replaceAll(' ', '_').replaceAll('&', '_');
+      final otherFileName = otherFilePath?.split('/').last.replaceAll(' ', '_').replaceAll('&', '_') ?? "";
 
-final formData = FormData.fromMap({
-  "cv_file": await MultipartFile.fromFile(cvFilePath, filename: cvFileName),
-  "name": name,
-  "email": email,
-  "mobile": mobile,
-  "work_type": workType,
-  "other_file": otherFilePath != null && otherFilePath.isNotEmpty
-      ? await MultipartFile.fromFile(otherFilePath, filename: otherFileName)
-      : MultipartFile.fromBytes([], filename: 'empty.txt'), // بدل null
-  "jobs_id": jobsId,
-  "user_id": userId,
-});
-
+      final formData = FormData.fromMap({
+        "cv_file": await MultipartFile.fromFile(cvFilePath, filename: cvFileName),
+        "name": name,
+        "email": email,
+        "mobile": mobile,
+        "work_type": workType,
+        "other_file": otherFilePath != null && otherFilePath.isNotEmpty
+            ? await MultipartFile.fromFile(otherFilePath, filename: otherFileName)
+            : MultipartFile.fromBytes([], filename: 'empty.txt'),
+        "jobs_id": jobsId,
+        "user_id": userId,
+        "is_update": isUpdate, 
+      });
 
       log("Form Data prepared: $formData");
 

@@ -15,6 +15,12 @@ import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_j
 import 'package:jobsque/features/job_detail/data/repos/job_detail_repo.dart';
 import 'package:jobsque/features/job_detail/data/repos/job_detail_repo_impl.dart';
 import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_cubit.dart';
+import 'package:jobsque/features/profile/data/repos/profile_repo.dart';
+import 'package:jobsque/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:jobsque/features/profile/presentation/view_model/cubits/edit_profile_cubit/profile_cubit.dart';
+import 'package:jobsque/features/saved_job/data/repos/saved_job_repo_impl.dart';
+import 'package:jobsque/features/saved_job/data/repos/saved_repo.dart';
+import 'package:jobsque/features/saved_job/presentation/view_model/cubits/saved_jobs_cubit.dart';
 import 'package:jobsque/features/show_apply_job/data/repos/applied_job_repo.dart';
 import 'package:jobsque/features/show_apply_job/data/repos/applied_job_repo_impl.dart';
 import 'package:jobsque/features/show_apply_job/presentation/view_model/cubit/show_applied_job_cubit.dart';
@@ -40,7 +46,6 @@ Future<void> initServiceLocator() async {
   // HomeRepo
   sl.registerLazySingleton<HomeRepo>(() => HomeRepoImpl(sl()));
 
-
   // LoginCubit
   sl.registerFactory(() => LoginCubit(sl()));
 
@@ -48,37 +53,48 @@ Future<void> initServiceLocator() async {
   sl.registerFactory(() => RegisterCubit(sl()));
 
   // SuggestedJobCubit
-   sl.registerFactory(() => JobsCubit(
-    sl<HomeRepo>(),
-    sl<AppPreferences>(),  // لازم تمرر AppPreferences هنا
-  ));
+  sl.registerFactory(
+    () => JobsCubit(
+      sl<HomeRepo>(),
+      sl<AppPreferences>(), // لازم تمرر AppPreferences هنا
+    ),
+  );
 
   // JobDetailRepo
-sl.registerLazySingleton<JobDetailRepo>(
-  () => JobDetailRepoImpl(sl<ApiService>()),
-);
+  sl.registerLazySingleton<JobDetailRepo>(
+    () => JobDetailRepoImpl(sl<ApiService>()),
+  );
 
-// JobDetailCubit
-sl.registerFactory<JobDetailCubit>(
-  () => JobDetailCubit(sl<JobDetailRepo>()),
-);
+  // JobDetailCubit
+  sl.registerFactory<JobDetailCubit>(() => JobDetailCubit(sl<JobDetailRepo>()));
 
-// ApplyJobRepo
-sl.registerLazySingleton<ApplyJobsRepo>(
-  () => ApplyJobsRepoImpl(sl<ApiService>()),
-);
+  // ApplyJobRepo
+  sl.registerLazySingleton<ApplyJobsRepo>(
+    () => ApplyJobsRepoImpl(sl<ApiService>()),
+  );
 
-// ApplyJobCubit
-sl.registerFactory<ApplyJobCubit>(
-  () => ApplyJobCubit(sl<ApplyJobsRepo>()),
-);
+  // ApplyJobCubit
+  sl.registerFactory<ApplyJobCubit>(() => ApplyJobCubit(sl<ApplyJobsRepo>()));
 
-sl.registerLazySingleton<ShowAppliedJobRepo>(
-  () => ShowAppliedJobRepoImpl(sl<ApiService>()),
-);
+  sl.registerLazySingleton<ShowAppliedJobRepo>(
+    () => ShowAppliedJobRepoImpl(sl<ApiService>()),
+  );
 
-// ShowAppliedJobCubit
-sl.registerFactory(
-  () => ShowAppliedJobCubit(sl<ShowAppliedJobRepo>()),
-);
+  // ShowAppliedJobCubit
+  sl.registerFactory(() => ShowAppliedJobCubit(sl<ShowAppliedJobRepo>()));
+
+  // SavedJobRepo
+  sl.registerLazySingleton<SavedJobRepo>(
+    () => SavedJobRepoImpl(sl<AppPreferences>()),
+  );
+
+  // SavedJobCubit
+  sl.registerFactory(() => SavedJobsCubit(sl<SavedJobRepo>()));
+
+  // profileRepo
+sl.registerLazySingleton<ProfileRepo>(() => ProfileRepoImpl(sl<ApiService>()));
+
+// profileCubit
+sl.registerFactory(() => ProfileCubit(sl<ProfileRepo>()));
+
 }

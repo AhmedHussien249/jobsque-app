@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
@@ -6,6 +7,8 @@ import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/features/home/data/models/jobs_model.dart';
 import 'package:jobsque/features/home/presentation/widgets/tag_recent_job.dart';
+import 'package:jobsque/features/saved_job/presentation/view_model/cubits/saved_jobs_cubit.dart';
+import 'package:jobsque/features/saved_job/presentation/view_model/cubits/saved_jobs_state.dart';
 
 class RecentJobItem extends StatelessWidget {
   final JobModel job;
@@ -65,17 +68,44 @@ class RecentJobItem extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 8),
-                SvgPicture.asset(AppAssets.saved, width: 24, height: 24),
+                BlocBuilder<SavedJobsCubit, SavedJobsState>(
+                  builder: (context, state) {
+                    bool isSaved = false;
+                    if (state is SavedJobsLoaded) {
+                      isSaved = state.jobs.any((j) => j.id == job.id);
+                    } else if (state is SavedJobStatus) {
+                      isSaved = state.isSaved;
+                    }
+
+                    return GestureDetector(
+                      onTap: () {
+                        context.read<SavedJobsCubit>().toggleJob(job);
+                      },
+                      child: SvgPicture.asset(
+                        isSaved
+                            ? AppAssets.saved
+                            : AppAssets
+                                  .saved, // خلي عندك أيقونة savedFilled للـ active
+                        width: 24,
+                        height: 24,
+                        colorFilter: isSaved
+                            ? const ColorFilter.mode(
+                                Colors.blue,
+                                BlendMode.srcIn,
+                              )
+                            : null,
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
-      
+
             const SizedBox(height: 12),
-      
-            /// Tags + Salary Row
+
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // الجزء الخاص بالـ Tags
                 Expanded(
                   child: Wrap(
                     spacing: 8,
@@ -99,8 +129,6 @@ class RecentJobItem extends StatelessWidget {
                     ],
                   ),
                 ),
-      
-                // الجزء الخاص بالراتب
               ],
             ),
             Align(
@@ -109,7 +137,7 @@ class RecentJobItem extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                   "\$$salary",
+                    "\$$salary",
                     style: AppStyles.medium16.copyWith(
                       color: const Color(0xff2E8E18),
                     ),

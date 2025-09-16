@@ -9,8 +9,9 @@ abstract class ApplyJobsRepo {
     required String email,
     required String mobile,
     required String workType,
-    required String? otherFilePath,
+    String? otherFilePath,
     required int jobsId,
     required int userId,
+    bool isUpdate = false, // Flag to indicate overwrite
   });
 }

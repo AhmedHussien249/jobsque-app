@@ -8,12 +8,15 @@ class ApplyJobLoading extends ApplyJobState {}
 
 class ApplyJobSuccess extends ApplyJobState {
   final ApplyJobModel applyJob;
-
   ApplyJobSuccess(this.applyJob);
+}
+
+class ApplyJobUpdated extends ApplyJobState { // Overwrite state
+  final ApplyJobModel applyJob;
+  ApplyJobUpdated(this.applyJob);
 }
 
 class ApplyJobFailure extends ApplyJobState {
   final String message;
-
   ApplyJobFailure(this.message);
 }

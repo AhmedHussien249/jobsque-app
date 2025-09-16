@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/features/apply_job/data/repos/apply_jobs_repo.dart';
 import 'package:jobsque/features/apply_job/presentation/view_model/cubit/apply_job_state.dart';
@@ -15,12 +14,13 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
     required String email,
     required String mobile,
     required String workType,
-    required String? otherFilePath,
+    String? otherFilePath,
     required int jobsId,
     required int userId,
+    bool isUpdate = false, // Flag to indicate overwrite
   }) async {
     log("🌟 Submit button clicked");
-    log("CV Path: $cvFilePath, Other File: ${otherFilePath ?? 'None'}");
+    log("${isUpdate ? 'Overwrite' : 'Apply'} - CV Path: $cvFilePath, Other File: ${otherFilePath ?? 'None'}");
 
     emit(ApplyJobLoading());
     log("⏳ State: Loading");
@@ -31,9 +31,10 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       email: email,
       mobile: mobile,
       workType: workType,
-      otherFilePath: otherFilePath ?? "",
+      otherFilePath: otherFilePath,
       jobsId: jobsId,
       userId: userId,
+      isUpdate: isUpdate,
     );
 
     result.fold(
@@ -43,7 +44,7 @@ class ApplyJobCubit extends Cubit<ApplyJobState> {
       },
       (applyJob) {
         log("✅ ApplyJob succeeded: ${applyJob.toString()}");
-        emit(ApplyJobSuccess(applyJob));
+        emit(isUpdate ? ApplyJobUpdated(applyJob) : ApplyJobSuccess(applyJob));
       },
     );
   }
