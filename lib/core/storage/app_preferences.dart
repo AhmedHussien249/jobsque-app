@@ -15,6 +15,9 @@ class AppPreferences {
   static const String _keyProfileImage = 'profileImage';
   static const String _keySavedJobs = 'savedJobs';
 
+
+
+
   static const String _keySearchHistory = 'searchHistory';
 
   final SharedPreferences _prefs;

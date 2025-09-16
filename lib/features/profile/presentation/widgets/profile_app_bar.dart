@@ -16,9 +16,7 @@ class ProfileAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(
-            onPressed: () {
-              GoRouter.of(context).push(AppRouter.kHomeView);
-            },
+            onPressed: () {},
             icon: const Icon(Icons.arrow_back),
           ),
           const Text(
