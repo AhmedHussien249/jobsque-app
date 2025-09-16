@@ -22,6 +22,13 @@ class AppAssets {
   static const notficationapp = 'assets/icons/notification.svg';
   static const setting = 'assets/icons/setting-4.svg';
   static const searchIlustration = 'assets/images/Search Ilustration.png';
+  static const avatar = 'assets/images/avatar.png';
+  static const camera = 'assets/icons/camera.svg';
+  static const editProfile = 'assets/icons/edit profile.svg';
+  static const portfolio = 'assets/icons/portfolio.svg';
+  static const language = 'assets/icons/language.svg';
+  static const notification2 = 'assets/icons/notification2.svg';
+  static const loginAndSecurity = 'assets/icons/login and security.svg';
   static const noSavedJob = 'assets/images/no saved job.png';
 
 
