@@ -12,10 +12,8 @@ class AppPreferences {
   static const String _keyLanguage = 'language';
   static const String _keyRememberMe = 'rememberMe';
   static const String _keyUserId = 'userId';
-    static const String _keySavedJobs = 'savedJobs';
-
-
-
+  static const String _keyProfileImage = 'profileImage';
+  static const String _keySavedJobs = 'savedJobs';
 
   static const String _keySearchHistory = 'searchHistory';
 
@@ -62,14 +60,14 @@ class AppPreferences {
     return _prefs.getString(_keyUserName);
   }
 
-// 🔹 Save user's ID (for authenticated requests)
-Future<void> setUserId(int id) async {
-  await _prefs.setInt(_keyUserId, id);
-}
+  // 🔹 Save user's ID (for authenticated requests)
+  Future<void> setUserId(int id) async {
+    await _prefs.setInt(_keyUserId, id);
+  }
 
-int? getUserId() {
-  return _prefs.getInt(_keyUserId);
-}
+  int? getUserId() {
+    return _prefs.getInt(_keyUserId);
+  }
 
   // 🔹 Save user's email (optional info)
   Future<void> setUserEmail(String email) async {
@@ -115,10 +113,12 @@ int? getUserId() {
   // ------------- Search History --------------------
 
   Future<void> addSearchQuery(String query) async {
-    if(query.trim().isEmpty) return;
+    if (query.trim().isEmpty) return;
     final history = _prefs.getStringList(_keySearchHistory) ?? [];
     // Remove duplicates
-    history.removeWhere((element) => element.toLowerCase() == query.toLowerCase());
+    history.removeWhere(
+      (element) => element.toLowerCase() == query.toLowerCase(),
+    );
     // Add to front
     history.insert(0, query);
     // Limit to 10 entries max
@@ -138,15 +138,29 @@ int? getUserId() {
 
   // 🔹 Saved Jobs Helpers
   List<String> getSavedJobsRaw() {
-  return _prefs.getStringList(_keySavedJobs) ?? [];
-}
+    return _prefs.getStringList(_keySavedJobs) ?? [];
+  }
 
-Future<void> setSavedJobsRaw(List<String> jobs) async {
-  await _prefs.setStringList(_keySavedJobs, jobs);
-}
+  Future<void> setSavedJobsRaw(List<String> jobs) async {
+    await _prefs.setStringList(_keySavedJobs, jobs);
+  }
 
-Future<void> clearSavedJobs() async {
-  await _prefs.remove(_keySavedJobs);
-}
+  Future<void> clearSavedJobs() async {
+    await _prefs.remove(_keySavedJobs);
+  }
 
+  // Save profile image path
+  Future<void> setProfileImage(String path) async {
+    await _prefs.setString(_keyProfileImage, path);
+  }
+
+  // Get profile image path
+  String? getProfileImage() {
+    return _prefs.getString(_keyProfileImage);
+  }
+
+  // Clear profile image
+  Future<void> clearProfileImage() async {
+    await _prefs.remove(_keyProfileImage);
+  }
 }

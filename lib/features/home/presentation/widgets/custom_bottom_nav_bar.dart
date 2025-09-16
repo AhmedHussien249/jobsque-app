@@ -33,11 +33,11 @@ class CustomBottomNavBar extends StatelessWidget {
           icon: _navIcon(AppAssets.home, false),
           label: "Home",
         ),
-        BottomNavigationBarItem(
-          activeIcon: _navIcon(AppAssets.message, true),
-          icon: _navIcon(AppAssets.message, false),
-          label: "Messages",
-        ),
+        // BottomNavigationBarItem(
+        //   activeIcon: _navIcon(AppAssets.message, true),
+        //   icon: _navIcon(AppAssets.message, false),
+        //   label: "Messages",
+        // ),
         BottomNavigationBarItem(
           activeIcon: _navIcon(AppAssets.briefcase, true),
           icon: _navIcon(AppAssets.briefcase, false),
