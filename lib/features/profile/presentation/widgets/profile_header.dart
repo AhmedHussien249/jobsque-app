@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
@@ -8,7 +9,7 @@ import 'package:jobsque/features/profile/presentation/view_model/cubits/edit_pro
 import 'package:jobsque/features/profile/presentation/widgets/full_screen_image_viewer.dart';
 
 class ProfileHeader extends StatelessWidget {
-  final dynamic profile; 
+  final dynamic profile;
   const ProfileHeader({super.key, this.profile});
 
   @override
@@ -40,9 +41,11 @@ class ProfileHeader extends StatelessWidget {
               child: CircleAvatar(
                 radius: 40,
                 backgroundColor: const Color.fromARGB(255, 210, 209, 209),
-                backgroundImage: profileImagePath != null && profileImagePath.isNotEmpty
+                backgroundImage:
+                    profileImagePath != null && profileImagePath.isNotEmpty
                     ? FileImage(File(profileImagePath))
-                    : const AssetImage("assets/images/avatar.png") as ImageProvider,
+                    : const AssetImage("assets/images/avatar.png")
+                          as ImageProvider,
               ),
             );
           },
@@ -50,10 +53,7 @@ class ProfileHeader extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           profile?.name ?? "No Name",
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         Text(
           profile?.bio ?? "No bio",
@@ -63,4 +63,3 @@ class ProfileHeader extends StatelessWidget {
     );
   }
 }
-

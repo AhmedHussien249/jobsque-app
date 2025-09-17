@@ -4,5 +4,6 @@ import 'package:jobsque/core/errors/failure.dart';
 import 'package:jobsque/features/show_apply_job/data/models/show_applied_job_model.dart';
 
 abstract class ShowAppliedJobRepo {
-  Future<Either<Failure, List<AppliedJobModel>>> fetchAppliedJobsForCurrentUser();
+  Future<Either<Failure, List<AppliedJobModel>>>
+  fetchAppliedJobsForCurrentUser();
 }

@@ -37,8 +37,12 @@ class ProfileModel {
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
-      id: json['id'] is int ? json['id'] : int.tryParse('${json['id'] ?? 0}') ?? 0,
-      userId: json['user_id'] is int ? json['user_id'] : int.tryParse('${json['user_id'] ?? 0}') ?? 0,
+      id: json['id'] is int
+          ? json['id']
+          : int.tryParse('${json['id'] ?? 0}') ?? 0,
+      userId: json['user_id'] is int
+          ? json['user_id']
+          : int.tryParse('${json['user_id'] ?? 0}') ?? 0,
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       mobile: json['mobile'] ?? '',
@@ -57,21 +61,21 @@ class ProfileModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'user_id': userId,
-        'name': name,
-        'email': email,
-        'mobile': mobile,
-        'address': address,
-        'language': language,
-        'interested_work': interestedWork,
-        'offline_place': offlinePlace,
-        'remote_place': remotePlace,
-        'bio': bio,
-        'education': education,
-        'experience': experience,
-        'personal_detailed': personalDetailed,
-        'created_at': createdAt,
-        'updated_at': updatedAt,
-      };
+    'id': id,
+    'user_id': userId,
+    'name': name,
+    'email': email,
+    'mobile': mobile,
+    'address': address,
+    'language': language,
+    'interested_work': interestedWork,
+    'offline_place': offlinePlace,
+    'remote_place': remotePlace,
+    'bio': bio,
+    'education': education,
+    'experience': experience,
+    'personal_detailed': personalDetailed,
+    'created_at': createdAt,
+    'updated_at': updatedAt,
+  };
 }

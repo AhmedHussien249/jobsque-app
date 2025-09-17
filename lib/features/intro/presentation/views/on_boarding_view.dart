@@ -9,8 +9,3 @@ class OnBoardingView extends StatelessWidget {
     return Scaffold(body: OnBoardingBody());
   }
 }
-
-
-
-
-

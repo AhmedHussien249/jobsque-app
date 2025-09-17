@@ -3,15 +3,15 @@ import 'package:jobsque/core/errors/failure.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/profile/data/repos/profile_repo.dart';
+
 import 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepo repo;
-  ProfileCubit(this.repo) : super(ProfileInitial()){
+  ProfileCubit(this.repo) : super(ProfileInitial()) {
     loadInitialProfileImage();
   }
 
-  /// جلب البورتفوليو + البروفايل
   Future<void> getPortfolio() async {
     emit(GetPortfolioLoading());
     try {
@@ -24,7 +24,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-  /// تعديل البروفايل: هنستقبل queryParams كـ Map عشان تتمكن من تمرير كل الحقول من الفورم بسهولة
   Future<void> editProfile({required Map<String, dynamic> queryParams}) async {
     emit(EditProfileLoading());
     try {
@@ -36,17 +35,16 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(EditProfileFailure(e.toString()));
     }
   }
-  /// تحديث صورة البروفايل فورًا
-Future<void> loadInitialProfileImage() async {
+
+  Future<void> loadInitialProfileImage() async {
     final path = sl<AppPreferences>().getProfileImage();
     if (path != null && path.isNotEmpty) {
       emit(UpdateProfileImage(path));
     }
   }
+
   Future<void> updateProfileImage(String path) async {
-    
     await sl<AppPreferences>().setProfileImage(path);
     emit(UpdateProfileImage(path));
   }
-
 }

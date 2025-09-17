@@ -104,5 +104,3 @@ class _AppliedJobsViewState extends State<AppliedJobsView> {
     );
   }
 }
-
-

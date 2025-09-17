@@ -29,14 +29,22 @@ class _SearchViewState extends State<SearchView> {
   void initState() {
     super.initState();
     searchHistory = widget.appPreferences.getSearchHistory();
-    context.read<JobsCubit>().fetchAllJobs();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<JobsCubit>().fetchAllJobs();
+      }
+    });
   }
 
   void performSearch(String query) {
     final trimmedQuery = query.trim();
+    if (!mounted) return;
+
     setState(() {
       searchQuery = trimmedQuery;
     });
+
     if (trimmedQuery.isEmpty) {
       context.read<JobsCubit>().fetchAllJobs();
     } else {
@@ -46,6 +54,7 @@ class _SearchViewState extends State<SearchView> {
 
   void clearSearchHistory() async {
     await widget.appPreferences.clearSearchHistory();
+    if (!mounted) return;
     setState(() {
       searchHistory.clear();
     });
@@ -119,7 +128,7 @@ class _SearchViewState extends State<SearchView> {
               BlocBuilder<JobsCubit, JobsState>(
                 builder: (context, state) {
                   if (state is JobsLoading) {
-                    return SliverFillRemaining(
+                    return const SliverFillRemaining(
                       child: Center(child: CircularProgressIndicator()),
                     );
                   } else if (state is JobsFailure) {
@@ -133,9 +142,7 @@ class _SearchViewState extends State<SearchView> {
                         child: Center(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
-                           
                             children: [
-
                               Image.asset(
                                 AppAssets.searchIlustration,
                                 height: 142,
@@ -173,7 +180,7 @@ class _SearchViewState extends State<SearchView> {
                       }, childCount: jobs.length),
                     );
                   } else {
-                    return SliverFillRemaining(
+                    return const SliverFillRemaining(
                       child: Center(child: Text("Start typing to search jobs")),
                     );
                   }

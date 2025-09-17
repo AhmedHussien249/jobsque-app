@@ -9,7 +9,7 @@ import 'package:jobsque/features/show_apply_job/data/models/show_applied_job_mod
 class ApplyJobBiodata extends StatefulWidget {
   final int jobId;
   final String jobType;
-  final AppliedJobModel? appliedJob; 
+  final AppliedJobModel? appliedJob;
 
   const ApplyJobBiodata({
     super.key,
@@ -191,7 +191,6 @@ class _ApplyJobBiodataState extends State<ApplyJobBiodata> {
                 ),
               ),
 
-              
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Align(

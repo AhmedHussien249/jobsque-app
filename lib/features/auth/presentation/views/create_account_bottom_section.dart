@@ -1,4 +1,3 @@
-
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_assets.dart';

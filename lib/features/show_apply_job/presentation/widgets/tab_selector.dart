@@ -1,4 +1,3 @@
-
 // ===== Tab Selector =====
 import 'package:flutter/material.dart';
 
@@ -6,7 +5,11 @@ class TabSelector extends StatelessWidget {
   final int selectedTab;
   final ValueChanged<int> onTabSelected;
 
-  const TabSelector({super.key, required this.selectedTab, required this.onTabSelected});
+  const TabSelector({
+    super.key,
+    required this.selectedTab,
+    required this.onTabSelected,
+  });
 
   @override
   Widget build(BuildContext context) {

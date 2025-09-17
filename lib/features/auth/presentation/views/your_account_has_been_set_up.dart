@@ -36,9 +36,7 @@ class CheckYourEmailContent extends StatelessWidget {
 
       children: [
         Spacer(),
-        Center(
-          child: Image.asset(AppAssets.person, width: 173, height: 142),
-        ),
+        Center(child: Image.asset(AppAssets.person, width: 173, height: 142)),
         SizedBox(height: 24),
         Text('Your account has been set up!', style: AppStyles.medium24),
         SizedBox(height: 12),
@@ -48,9 +46,12 @@ class CheckYourEmailContent extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Spacer(),
-        CustomButton(text: 'Get started', onPressed: () {
-          GoRouter.of(context).push( AppRouter.kLoginView);
-        }),
+        CustomButton(
+          text: 'Get started',
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kLoginView);
+          },
+        ),
       ],
     );
   }

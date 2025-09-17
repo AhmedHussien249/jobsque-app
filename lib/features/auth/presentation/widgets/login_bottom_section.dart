@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
@@ -7,7 +6,6 @@ import 'package:jobsque/core/utils/app_strings.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/widgets/custom_button.dart';
 import 'package:jobsque/features/auth/presentation/widgets/social_button.dart';
-
 
 class LoginBottomSection extends StatelessWidget {
   const LoginBottomSection({super.key, required this.onLoginPressed});
@@ -29,7 +27,7 @@ class LoginBottomSection extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                GoRouter.of(context).push(AppRouter.kCreateAccountView);  
+                GoRouter.of(context).push(AppRouter.kCreateAccountView);
               },
               child: Text(
                 '  Register',
@@ -64,15 +62,9 @@ class LoginBottomSection extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SocialButton(
-              asset: AppAssets.google,
-              label: AppStrings.google,
-            ),
+            SocialButton(asset: AppAssets.google, label: AppStrings.google),
             const SizedBox(width: 16),
-            SocialButton(
-              asset: AppAssets.facebook,
-              label: AppStrings.facebook,
-            ),
+            SocialButton(asset: AppAssets.facebook, label: AppStrings.facebook),
           ],
         ),
         SizedBox(height: 24),

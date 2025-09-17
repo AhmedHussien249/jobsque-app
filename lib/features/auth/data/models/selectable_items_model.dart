@@ -4,10 +4,7 @@ class SelectableItemModel {
   final String title;
   final IconData icon;
 
-  const SelectableItemModel({
-    required this.title,
-    required this.icon,
-  });
+  const SelectableItemModel({required this.title, required this.icon});
 
   static const List<SelectableItemModel> items = [
     SelectableItemModel(title: 'UI/UX Designer', icon: Icons.design_services),

@@ -8,8 +8,8 @@ class AppliedJobModel {
   final String? otherFile;
   final int jobsId;
   final int userId;
-  final int reviewed; 
-  final bool? accept; 
+  final int reviewed;
+  final bool? accept;
   final String createdAt;
   final String updatedAt;
 
@@ -38,9 +38,15 @@ class AppliedJobModel {
       workType: json['work_type'] ?? '',
       cvFile: json['cv_file'] as String?,
       otherFile: json['other_file'] as String?,
-      jobsId: json['jobs_id'] is String ? int.tryParse(json['jobs_id']) ?? 0 : (json['jobs_id'] ?? 0),
-      userId: json['user_id'] is String ? int.tryParse(json['user_id']) ?? 0 : (json['user_id'] ?? 0),
-      reviewed: json['reviewed'] is int ? json['reviewed'] : (json['reviewed'] == true ? 1 : 0),
+      jobsId: json['jobs_id'] is String
+          ? int.tryParse(json['jobs_id']) ?? 0
+          : (json['jobs_id'] ?? 0),
+      userId: json['user_id'] is String
+          ? int.tryParse(json['user_id']) ?? 0
+          : (json['user_id'] ?? 0),
+      reviewed: json['reviewed'] is int
+          ? json['reviewed']
+          : (json['reviewed'] == true ? 1 : 0),
       accept: json['accept'] is bool ? json['accept'] : null,
       createdAt: json['created_at'] ?? '',
       updatedAt: json['updated_at'] ?? '',

@@ -12,17 +12,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServiceLocator();
   Bloc.observer = AppBlocObserver();
-runApp(
-  MultiBlocProvider(
-    providers: [
-      BlocProvider(create: (_) => sl<JobsCubit>()..fetchAllJobs()),
-      BlocProvider(create: (_) => sl<SavedJobsCubit>()..loadSavedJobs()),
-      BlocProvider(create: (_) => sl<ProfileCubit>()..getPortfolio()),
-    ],
-    child: const MyApp(),
-  ),
-);
-
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<JobsCubit>()..fetchAllJobs()),
+        BlocProvider(create: (_) => sl<SavedJobsCubit>()..loadSavedJobs()),
+        BlocProvider(create: (_) => sl<ProfileCubit>()..getPortfolio()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -37,7 +36,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Jobsque',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.blue,scaffoldBackgroundColor: Colors.white,),
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
+        ),
         routerConfig: AppRouter.router,
       ),
     );

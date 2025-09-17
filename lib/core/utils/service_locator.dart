@@ -53,12 +53,7 @@ Future<void> initServiceLocator() async {
   sl.registerFactory(() => RegisterCubit(sl()));
 
   // SuggestedJobCubit
-  sl.registerFactory(
-    () => JobsCubit(
-      sl<HomeRepo>(),
-      sl<AppPreferences>(), // لازم تمرر AppPreferences هنا
-    ),
-  );
+  sl.registerFactory(() => JobsCubit(sl<HomeRepo>(), sl<AppPreferences>()));
 
   // JobDetailRepo
   sl.registerLazySingleton<JobDetailRepo>(
@@ -80,30 +75,22 @@ Future<void> initServiceLocator() async {
     () => ShowAppliedJobRepoImpl(sl<ApiService>()),
   );
 
-// ShowAppliedJobCubit
-sl.registerFactory(
-  () => ShowAppliedJobCubit(sl<ShowAppliedJobRepo>()),
-);
+  // ShowAppliedJobCubit
+  sl.registerFactory(() => ShowAppliedJobCubit(sl<ShowAppliedJobRepo>()));
 
-// SavedJobRepo
-sl.registerLazySingleton<SavedJobRepo>(
-  () => SavedJobRepoImpl(sl<AppPreferences>()),
-);
+  // SavedJobRepo
+  sl.registerLazySingleton<SavedJobRepo>(
+    () => SavedJobRepoImpl(sl<AppPreferences>()),
+  );
 
-// SavedJobsCubit
-sl.registerFactory(
-  () => SavedJobsCubit(sl<SavedJobRepo>()),
-);
+  // SavedJobsCubit
+  sl.registerFactory(() => SavedJobsCubit(sl<SavedJobRepo>()));
 
-// ProfileRepo
-sl.registerLazySingleton<ProfileRepo>(
-  () => ProfileRepoImpl(sl<ApiService>()),
-);
+  // ProfileRepo
+  sl.registerLazySingleton<ProfileRepo>(
+    () => ProfileRepoImpl(sl<ApiService>()),
+  );
 
-// ProfileCubit
-sl.registerFactory(
-  () => ProfileCubit(sl<ProfileRepo>()),
-);
-
-
+  // ProfileCubit
+  sl.registerFactory(() => ProfileCubit(sl<ProfileRepo>()));
 }

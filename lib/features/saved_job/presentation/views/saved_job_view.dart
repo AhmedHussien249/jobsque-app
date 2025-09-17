@@ -14,30 +14,27 @@ class SavedJobView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        // العنوان بس
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12),
           child: Center(child: Text("Saved", style: AppStyles.medium20)),
         ),
-        // النص اللي بيعرض عدد الوظايف
-        BlocBuilder<SavedJobsCubit, SavedJobsState>(
 
+        BlocBuilder<SavedJobsCubit, SavedJobsState>(
           builder: (context, state) {
             if (state is SavedJobsLoaded && state.jobs.isNotEmpty) {
               final count = state.jobs.length;
               return Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Container(
-                 
                   height: 36,
-                  decoration: BoxDecoration(
-                    
-                    color: const Color(0xffE5E7EB),
-                  ),
+                  decoration: BoxDecoration(color: const Color(0xffE5E7EB)),
                   child: Center(
                     child: Text(
                       "$count ${count == 1 ? "Saved Job" : "Saved Jobs"}",
-                      style: const TextStyle(fontSize: 14, color: Color(0xff6B7280)),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Color(0xff6B7280),
+                      ),
                     ),
                   ),
                 ),
@@ -47,7 +44,6 @@ class SavedJobView extends StatelessWidget {
           },
         ),
 
-        // محتوى الـ Saved Jobs
         Expanded(
           child: BlocBuilder<SavedJobsCubit, SavedJobsState>(
             builder: (context, state) {

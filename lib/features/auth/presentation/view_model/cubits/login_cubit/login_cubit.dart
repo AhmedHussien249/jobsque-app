@@ -32,7 +32,6 @@ class LoginCubit extends Cubit<LoginState> {
         await prefs.setRememberMe(false);
       }
 
-      
       await prefs.setToken(user.token);
       await prefs.setLoggedIn(true);
       await prefs.setUserEmail(user.email);

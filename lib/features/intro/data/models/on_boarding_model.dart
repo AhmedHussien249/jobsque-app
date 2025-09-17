@@ -1,4 +1,3 @@
-
 import 'package:jobsque/core/utils/app_assets.dart';
 
 class OnBoardingModel {
@@ -7,7 +6,7 @@ class OnBoardingModel {
   final String imageUrl;
   final String buttonText;
 
-  const OnBoardingModel( {
+  const OnBoardingModel({
     required this.title,
     required this.subTitle,
     required this.imageUrl,
@@ -17,13 +16,11 @@ class OnBoardingModel {
 
 final List<OnBoardingModel> onboardingData = [
   OnBoardingModel(
-    
     title: 'Find a job, and start building your career from now on',
     subTitle:
         'Explore over 25,924 available job roles and upgrade your operator now.',
     imageUrl: AppAssets.onBoarding1,
     buttonText: 'next',
-    
   ),
   OnBoardingModel(
     title: 'Hundreds of jobs are waiting for you to join together',

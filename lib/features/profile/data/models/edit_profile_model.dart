@@ -39,15 +39,15 @@ class EditProfileModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'bio': bio,
-        'address': address,
-        'mobile': mobile,
-        'language': language,
-        'interested_work': interestedWork,
-        'offline_place': offlinePlace,
-        'remote_place': remotePlace,
-        'experience': experience,
-        'personal_detailed': personalDetailed,
-        'education': education,
-      };
+    'bio': bio,
+    'address': address,
+    'mobile': mobile,
+    'language': language,
+    'interested_work': interestedWork,
+    'offline_place': offlinePlace,
+    'remote_place': remotePlace,
+    'experience': experience,
+    'personal_detailed': personalDetailed,
+    'education': education,
+  };
 }

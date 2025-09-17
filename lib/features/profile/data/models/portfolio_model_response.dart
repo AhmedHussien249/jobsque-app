@@ -1,13 +1,10 @@
 import 'profile_model.dart';
 
 class PortfolioResponseModel {
-  final List<dynamic> portofolio; // لو هتحدّد شكل عناصر البورتفوليو بعدين استبدل dynamic بالموديل المناسب
+  final List<dynamic> portofolio;
   final ProfileModel? profile;
 
-  PortfolioResponseModel({
-    required this.portofolio,
-    required this.profile,
-  });
+  PortfolioResponseModel({required this.portofolio, required this.profile});
 
   factory PortfolioResponseModel.fromJson(Map<String, dynamic> json) {
     final data = json['data'] as Map<String, dynamic>? ?? {};

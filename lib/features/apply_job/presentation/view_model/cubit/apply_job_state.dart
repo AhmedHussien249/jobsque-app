@@ -11,7 +11,8 @@ class ApplyJobSuccess extends ApplyJobState {
   ApplyJobSuccess(this.applyJob);
 }
 
-class ApplyJobUpdated extends ApplyJobState { // Overwrite state
+class ApplyJobUpdated extends ApplyJobState {
+  // Overwrite state
   final ApplyJobModel applyJob;
   ApplyJobUpdated(this.applyJob);
 }

@@ -11,10 +11,7 @@ class JobDetailHeader extends StatelessWidget {
     return Column(
       children: [
         // Logo
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage(job.image),
-        ),
+        CircleAvatar(radius: 30, backgroundImage: NetworkImage(job.image)),
         const SizedBox(height: 8),
         // Job Title
         Text(
@@ -30,11 +27,7 @@ class JobDetailHeader extends StatelessWidget {
         // Tags
         Wrap(
           spacing: 8,
-          children: [
-            _buildTag(job.jobTimeType),
-            _buildTag(job.jobType),
-            
-          ],
+          children: [_buildTag(job.jobTimeType), _buildTag(job.jobType)],
         ),
         const SizedBox(height: 16),
       ],
@@ -43,10 +36,8 @@ class JobDetailHeader extends StatelessWidget {
 
   Widget _buildTag(String text) {
     return Chip(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(24),
-      ),
-      label: Text(text,style:TextStyle(color:  Color(0xff3366FF),)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      label: Text(text, style: TextStyle(color: Color(0xff3366FF))),
       backgroundColor: const Color(0xffD6E4FF),
     );
   }

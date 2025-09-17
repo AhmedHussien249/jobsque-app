@@ -64,33 +64,30 @@ class SuggestedJopItem extends StatelessWidget {
                 ],
               ),
               const Spacer(),
-             BlocBuilder<SavedJobsCubit, SavedJobsState>(
-                  builder: (context, state) {
-                    bool isSaved = false;
-                    if (state is SavedJobsLoaded) {
-                      isSaved = state.jobs.any((j) => j.id == job.id);
-                    } else if (state is SavedJobStatus) {
-                      isSaved = state.isSaved;
-                    }
+              BlocBuilder<SavedJobsCubit, SavedJobsState>(
+                builder: (context, state) {
+                  bool isSaved = false;
+                  if (state is SavedJobsLoaded) {
+                    isSaved = state.jobs.any((j) => j.id == job.id);
+                  } else if (state is SavedJobStatus) {
+                    isSaved = state.isSaved;
+                  }
 
-                    return GestureDetector(
-                      onTap: () {
-                        context.read<SavedJobsCubit>().toggleJob(job);
-                      },
-                      child: SvgPicture.asset(
-                        isSaved
-                            ? AppAssets.saved
-                            : AppAssets
-                                  .saved, // خلي عندك أيقونة savedFilled للـ active
-                        width: 24,
-                        height: 24,
-                        colorFilter: isSaved
-                            ? const ColorFilter.mode(Colors.blue, BlendMode.srcIn)
-                            : null,
-                      ),
-                    );
-                  },
-                ),
+                  return GestureDetector(
+                    onTap: () {
+                      context.read<SavedJobsCubit>().toggleJob(job);
+                    },
+                    child: SvgPicture.asset(
+                      isSaved ? AppAssets.saved : AppAssets.saved,
+                      width: 24,
+                      height: 24,
+                      colorFilter: isSaved
+                          ? const ColorFilter.mode(Colors.blue, BlendMode.srcIn)
+                          : null,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -128,10 +125,12 @@ class SuggestedJopItem extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xff3366FF),
-                    foregroundColor: Colors.white
+                    foregroundColor: Colors.white,
                   ),
                   onPressed: () {
-                    GoRouter.of(context).push('${AppRouter.kJobDetailView}/${job.id}');
+                    GoRouter.of(
+                      context,
+                    ).push('${AppRouter.kJobDetailView}/${job.id}');
                   },
                   child: FittedBox(child: const Text("Apply now")),
                 ),

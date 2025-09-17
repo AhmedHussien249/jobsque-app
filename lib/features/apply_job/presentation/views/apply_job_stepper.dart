@@ -21,7 +21,6 @@ class ApplyJobStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        
         Row(
           children: List.generate(stepTitles.length * 2 - 1, (index) {
             if (index.isEven) {
@@ -48,12 +47,8 @@ class ApplyJobStepper extends StatelessWidget {
                 ),
               );
             } else {
-          
               return Expanded(
-                child: Container(
-                  height: 2,
-                  color: Colors.grey.shade300,
-                ),
+                child: Container(height: 2, color: Colors.grey.shade300),
               );
             }
           }),
@@ -61,7 +56,6 @@ class ApplyJobStepper extends StatelessWidget {
 
         const SizedBox(height: 6),
 
-        
         Row(
           children: List.generate(stepTitles.length * 2 - 1, (index) {
             if (index.isEven) {
@@ -81,7 +75,6 @@ class ApplyJobStepper extends StatelessWidget {
                 ),
               );
             } else {
-              
               return const Expanded(child: SizedBox());
             }
           }),

@@ -44,9 +44,12 @@ class CheckYourEmailContent extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Spacer(),
-        CustomButton(text: 'Open email app', onPressed: () {
-          GoRouter.of(context).push( AppRouter.kCreateNewPasswordView);
-        }),
+        CustomButton(
+          text: 'Open email app',
+          onPressed: () {
+            GoRouter.of(context).push(AppRouter.kCreateNewPasswordView);
+          },
+        ),
       ],
     );
   }

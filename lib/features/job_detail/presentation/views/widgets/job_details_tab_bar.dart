@@ -12,7 +12,7 @@ class JobDetailTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabs = ["Description", "Company", ];
+    final tabs = ["Description", "Company"];
 
     return Container(
       padding: const EdgeInsets.all(4),

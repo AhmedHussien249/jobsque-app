@@ -55,7 +55,7 @@ class _CreateAccountContentState extends State<CreateAccountContent> {
     await prefs.setUserName(state.registerModel.profile.name);
     await prefs.setUserEmail(state.registerModel.profile.email);
 
-    if (!mounted) return; 
+    if (!mounted) return;
 
     GoRouter.of(
       context,
@@ -76,9 +76,9 @@ class _CreateAccountContentState extends State<CreateAccountContent> {
           handleRegisterSuccess(state);
         } else if (state is RegisterFailure) {
           Navigator.pop(context);
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.message),backgroundColor: Colors.red,));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message), backgroundColor: Colors.red),
+          );
         }
       },
       child: Form(

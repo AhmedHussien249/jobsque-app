@@ -31,9 +31,9 @@ class CustomTextFormField extends StatelessWidget {
     return Theme(
       data: Theme.of(context).copyWith(
         textSelectionTheme: const TextSelectionThemeData(
-          selectionColor: Color(0xff3366Ff), // لون التحديد
-          cursorColor: Color(0xff3366Ff), // لون المؤشر
-          selectionHandleColor: Color(0xff3366Ff), // لون النقطة بتاعة التحديد
+          selectionColor: Color(0xff3366Ff),
+          cursorColor: Color(0xff3366Ff),
+          selectionHandleColor: Color(0xff3366Ff),
         ),
       ),
       child: TextFormField(
@@ -51,7 +51,9 @@ class CustomTextFormField extends StatelessWidget {
                   icon:
                       suffixIcon ??
                       Icon(
-                        obscureText ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+                        obscureText
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                       ),
                 )
               : suffixIcon,

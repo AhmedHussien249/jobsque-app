@@ -43,7 +43,6 @@ class ServerFailure extends Failure {
       return const ServerFailure('Unexpected server response format.');
     }
 
-    
     dynamic rawMessage =
         response['massege'] ??
         response['massage'] ??
@@ -65,7 +64,6 @@ class ServerFailure extends Failure {
       message = 'An error occurred';
     }
 
-    
     final lowerMsg = message.toLowerCase();
     if (lowerMsg.contains('wrong') ||
         lowerMsg.contains('password') ||

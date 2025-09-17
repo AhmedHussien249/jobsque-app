@@ -82,10 +82,7 @@ class RecentJobItem extends StatelessWidget {
                         context.read<SavedJobsCubit>().toggleJob(job);
                       },
                       child: SvgPicture.asset(
-                        isSaved
-                            ? AppAssets.saved
-                            : AppAssets
-                                  .saved, // خلي عندك أيقونة savedFilled للـ active
+                        isSaved ? AppAssets.saved : AppAssets.saved,
                         width: 24,
                         height: 24,
                         colorFilter: isSaved

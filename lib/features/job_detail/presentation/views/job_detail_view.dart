@@ -64,7 +64,9 @@ class _JobDetailViewState extends State<JobDetailView> {
             final job = state.jobDetail;
 
             // Safety for null jobType
-            final jobTypeSafe = job.jobType.isNotEmpty ? job.jobType : "Full-time";
+            final jobTypeSafe = job.jobType.isNotEmpty
+                ? job.jobType
+                : "Full-time";
 
             return Stack(
               children: [
@@ -87,9 +89,15 @@ class _JobDetailViewState extends State<JobDetailView> {
                       ] else ...[
                         const SizedBox(height: 16),
                         CompanyInformation(
-                          email: job.compEmail.isNotEmpty ? job.compEmail : "N/A",
-                          website: job.compWebsite.isNotEmpty ? job.compWebsite : "N/A",
-                          aboutCompany: job.aboutComp.isNotEmpty ? job.aboutComp : "N/A",
+                          email: job.compEmail.isNotEmpty
+                              ? job.compEmail
+                              : "N/A",
+                          website: job.compWebsite.isNotEmpty
+                              ? job.compWebsite
+                              : "N/A",
+                          aboutCompany: job.aboutComp.isNotEmpty
+                              ? job.aboutComp
+                              : "N/A",
                         ),
                         const SizedBox(height: 80),
                       ],
@@ -111,7 +119,12 @@ class _JobDetailViewState extends State<JobDetailView> {
 }
 
 class CompanyInformation extends StatelessWidget {
-  const CompanyInformation({super.key, required this.email, required this.website, required this.aboutCompany});
+  const CompanyInformation({
+    super.key,
+    required this.email,
+    required this.website,
+    required this.aboutCompany,
+  });
   final String email;
   final String website;
   final String aboutCompany;
@@ -127,28 +140,40 @@ class CompanyInformation extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey.shade300, width: 2),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text('email'), Text(email, overflow: TextOverflow.ellipsis)],
+                  children: [
+                    Text('email'),
+                    Text(email, overflow: TextOverflow.ellipsis),
+                  ],
                 ),
               ),
             ),
             const SizedBox(width: 13),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 12,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.grey.shade300, width: 2),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [Text('website'), Text(website, overflow: TextOverflow.ellipsis)],
+                  children: [
+                    Text('website'),
+                    Text(website, overflow: TextOverflow.ellipsis),
+                  ],
                 ),
               ),
             ),

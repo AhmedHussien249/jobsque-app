@@ -28,24 +28,15 @@ class LoginAndSecurityView extends StatelessWidget {
             subtitle: "rafifdian12@gmail.com",
             onTap: () {},
           ),
-          _buildItem(
-            title: "Phone number",
-            onTap: () {},
-          ),
-          _buildItem(
-            title: "Change password",
-            onTap: () {},
-          ),
+          _buildItem(title: "Phone number", onTap: () {}),
+          _buildItem(title: "Change password", onTap: () {}),
           _buildItem(
             title: "Two-step verification",
             subtitle: "Non active",
             subtitleColor: Colors.grey,
             onTap: () {},
           ),
-          _buildItem(
-            title: "Face ID",
-            onTap: () {},
-          ),
+          _buildItem(title: "Face ID", onTap: () {}),
         ],
       ),
     );
@@ -70,8 +61,11 @@ class LoginAndSecurityView extends StatelessWidget {
                   ),
                 )
               : null,
-          trailing:
-              const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+          trailing: const Icon(
+            Icons.arrow_forward_ios,
+            size: 16,
+            color: Colors.grey,
+          ),
           onTap: onTap,
         ),
         const Divider(height: 1),

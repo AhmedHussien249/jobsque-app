@@ -1,6 +1,7 @@
 // lib/features/show_apply_job/presentation/view_model/cubit/show_applied_job_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/features/show_apply_job/data/repos/applied_job_repo.dart';
+
 import 'show_applied_job_state.dart';
 
 class ShowAppliedJobCubit extends Cubit<ShowAppliedJobState> {

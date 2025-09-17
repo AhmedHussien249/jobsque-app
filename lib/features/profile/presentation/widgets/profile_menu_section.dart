@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -15,7 +13,7 @@ class MenuSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSectionTitle(title),
-        ...items.map((item) => ProfileMenuItem(data: item)).toList(),
+        ...items.map((item) => ProfileMenuItem(data: item)),
       ],
     );
   }
@@ -48,8 +46,11 @@ class ProfileMenuItem extends StatelessWidget {
     return ListTile(
       leading: data.iconUrl != null ? SvgPicture.asset(data.iconUrl!) : null,
       title: Text(data.text),
-      trailing:
-          const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.black),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: Colors.black,
+      ),
       onTap: data.onTap,
     );
   }

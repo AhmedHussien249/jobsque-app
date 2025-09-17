@@ -22,9 +22,7 @@ class LoginView extends StatelessWidget {
                 ),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: IntrinsicHeight(
-                    child: LoginBodyContent(),
-                  ),
+                  child: IntrinsicHeight(child: LoginBodyContent()),
                 ),
               );
             },
@@ -34,7 +32,3 @@ class LoginView extends StatelessWidget {
     );
   }
 }
-
-
-
-

@@ -9,7 +9,7 @@ import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_j
 
 class JobsCubit extends Cubit<JobsState> {
   final HomeRepo homeRepo;
-  final AppPreferences appPreferences;  // اضفت appPreferences هنا
+  final AppPreferences appPreferences;
 
   JobsCubit(this.homeRepo, this.appPreferences) : super(JobsInitial());
 
@@ -34,7 +34,6 @@ class JobsCubit extends Cubit<JobsState> {
       fetchAllJobs();
       return;
     }
-
 
     await appPreferences.addSearchQuery(name);
 

@@ -11,7 +11,7 @@ class ApplyJobTypeOfWorkView extends StatefulWidget {
   final String email;
   final String mobile;
   final String jobType;
-  final AppliedJobModel? appliedJob; 
+  final AppliedJobModel? appliedJob;
 
   const ApplyJobTypeOfWorkView({
     super.key,
@@ -35,7 +35,7 @@ class _ApplyJobTypeOfWorkViewState extends State<ApplyJobTypeOfWorkView> {
   void initState() {
     super.initState();
     workTypes = [widget.jobType];
-    
+
     selectedWorkType = widget.appliedJob?.workType ?? widget.jobType;
   }
 
@@ -68,7 +68,6 @@ class _ApplyJobTypeOfWorkViewState extends State<ApplyJobTypeOfWorkView> {
             ),
             const SizedBox(height: 16),
 
-            
             ...workTypes.map((type) {
               return Container(
                 margin: const EdgeInsets.only(bottom: 12),

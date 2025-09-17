@@ -1,4 +1,3 @@
-
 import 'package:jobsque/features/job_detail/data/models/job_detail_model.dart';
 
 abstract class JobDetailState {}

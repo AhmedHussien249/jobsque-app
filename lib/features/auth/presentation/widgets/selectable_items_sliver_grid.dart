@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:jobsque/features/auth/data/models/selectable_items_model.dart';
 import 'package:jobsque/features/auth/presentation/widgets/selectable_items.dart';
@@ -7,12 +6,11 @@ class SelectableItemSliverGrid extends StatefulWidget {
   const SelectableItemSliverGrid({super.key});
 
   @override
-  State<SelectableItemSliverGrid> createState() => _SelectableItemSliverGridState();
+  State<SelectableItemSliverGrid> createState() =>
+      _SelectableItemSliverGridState();
 }
 
 class _SelectableItemSliverGridState extends State<SelectableItemSliverGrid> {
-  
-
   final Set<int> selectedIndex = {0, 5};
   @override
   Widget build(BuildContext context) {

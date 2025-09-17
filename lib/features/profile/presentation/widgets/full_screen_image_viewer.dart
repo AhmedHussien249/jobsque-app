@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class FullScreenImageViewer extends StatelessWidget {
@@ -11,9 +10,11 @@ class FullScreenImageViewer extends StatelessWidget {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Center(
-        child: InteractiveViewer( // يديك زووم و سحب
+        child: InteractiveViewer(
+          // for zooming and panning
           child: Image(image: imageProvider),
         ),
       ),

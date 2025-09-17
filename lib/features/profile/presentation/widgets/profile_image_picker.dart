@@ -1,9 +1,12 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:jobsque/core/storage/app_preferences.dart';
+import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/profile/presentation/view_model/cubits/edit_profile_cubit/profile_cubit.dart';
 import 'package:jobsque/features/profile/presentation/view_model/cubits/edit_profile_cubit/profile_state.dart';
 
@@ -24,24 +27,20 @@ class ProfileImagePicker extends StatefulWidget {
 class _ProfileImagePickerState extends State<ProfileImagePicker> {
   final ImagePicker _picker = ImagePicker();
 
-  /// دالة لقص/تعديل الصورة بعد اختيارها
   Future<File?> _cropImage(String imagePath) async {
     final croppedFile = await ImageCropper().cropImage(
       sourcePath: imagePath,
       compressQuality: 90,
-      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1), // مربعة للبروفايل
+      aspectRatio: const CropAspectRatio(ratioX: 1, ratioY: 1),
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Edit Photo',
           toolbarColor: Colors.blue,
           toolbarWidgetColor: Colors.white,
           hideBottomControls: false,
-          lockAspectRatio: true, // نخليها مربعة بس
+          lockAspectRatio: true,
         ),
-        IOSUiSettings(
-          title: 'Edit Photo',
-          aspectRatioLockEnabled: true,
-        ),
+        IOSUiSettings(title: 'Edit Photo', aspectRatioLockEnabled: true),
       ],
     );
 
@@ -102,10 +101,16 @@ class _ProfileImagePickerState extends State<ProfileImagePicker> {
       imageProvider = FileImage(widget.profileImage!);
     } else if (context.read<ProfileCubit>().state is UpdateProfileImage) {
       imageProvider = FileImage(
-        File((context.read<ProfileCubit>().state as UpdateProfileImage).imagePath),
+        File(
+          (context.read<ProfileCubit>().state as UpdateProfileImage).imagePath,
+        ),
       );
     } else {
-      imageProvider = const AssetImage("assets/images/avatar.png");
+      imageProvider =
+          sl<AppPreferences>().getProfileImage() != null &&
+              sl<AppPreferences>().getProfileImage()!.isNotEmpty
+          ? FileImage(File(sl<AppPreferences>().getProfileImage()!))
+          : const AssetImage("assets/images/avatar.png");
     }
 
     return Column(
@@ -129,7 +134,10 @@ class _ProfileImagePickerState extends State<ProfileImagePicker> {
                   padding: const EdgeInsets.all(6),
                   child: SvgPicture.asset(
                     "assets/icons/camera.svg",
-                    colorFilter: const ColorFilter.mode(Colors.black, BlendMode.srcIn),
+                    colorFilter: const ColorFilter.mode(
+                      Colors.black,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
               ),

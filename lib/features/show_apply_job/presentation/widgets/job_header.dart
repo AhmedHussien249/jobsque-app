@@ -1,4 +1,3 @@
-
 // ===== Job Header =====
 import 'package:flutter/material.dart';
 
@@ -21,7 +20,10 @@ class JobHeader extends StatelessWidget {
             children: [
               Text(
                 jobDetail.name,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
               ),
               Text(
                 "${jobDetail.compName} • ${jobDetail.location}",
@@ -30,10 +32,7 @@ class JobHeader extends StatelessWidget {
             ],
           ),
         ),
-        IconButton(
-          icon: const Icon(Icons.bookmark_border),
-          onPressed: () {},
-        ),
+        IconButton(icon: const Icon(Icons.bookmark_border), onPressed: () {}),
       ],
     );
   }

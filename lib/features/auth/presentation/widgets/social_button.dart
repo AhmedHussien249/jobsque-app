@@ -22,9 +22,7 @@ class SocialButton extends StatelessWidget {
           const SizedBox(width: 2),
           Text(
             label,
-            style: AppStyles.medium14.copyWith(
-              color: const Color(0xff363F5E),
-            ),
+            style: AppStyles.medium14.copyWith(color: const Color(0xff363F5E)),
           ),
         ],
       ),

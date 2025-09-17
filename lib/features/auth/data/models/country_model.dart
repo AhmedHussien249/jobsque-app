@@ -4,8 +4,6 @@ class CountryModel {
 
   CountryModel({required this.name, required this.flag});
 
- 
-
   static final List<CountryModel> countries = [
     CountryModel(name: 'United States', flag: '🇺🇸'),
     CountryModel(name: 'Egypt', flag: '🇪🇬'),

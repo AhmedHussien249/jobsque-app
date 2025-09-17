@@ -7,10 +7,12 @@ class ProfileInitial extends ProfileState {}
 
 /// Get Portfolio States
 class GetPortfolioLoading extends ProfileState {}
+
 class GetPortfolioSuccess extends ProfileState {
   final PortfolioResponseModel data;
   GetPortfolioSuccess(this.data);
 }
+
 class GetPortfolioFailure extends ProfileState {
   final String message;
   GetPortfolioFailure(this.message);
@@ -18,10 +20,12 @@ class GetPortfolioFailure extends ProfileState {
 
 /// Edit Profile States
 class EditProfileLoading extends ProfileState {}
+
 class EditProfileSuccess extends ProfileState {
   final EditProfileModel data;
   EditProfileSuccess(this.data);
 }
+
 class EditProfileFailure extends ProfileState {
   final String message;
   EditProfileFailure(this.message);
@@ -32,4 +36,3 @@ class UpdateProfileImage extends ProfileState {
   final String imagePath;
   UpdateProfileImage(this.imagePath);
 }
-

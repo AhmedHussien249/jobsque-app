@@ -12,7 +12,7 @@ class PasswordChangedView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       body: SafeArea(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           child: PasswordChangedContent(),
@@ -21,6 +21,7 @@ class PasswordChangedView extends StatelessWidget {
     );
   }
 }
+
 class PasswordChangedContent extends StatelessWidget {
   const PasswordChangedContent({super.key});
 
@@ -35,7 +36,11 @@ class PasswordChangedContent extends StatelessWidget {
           child: Image.asset(AppAssets.openEmail, width: 173, height: 142),
         ),
         SizedBox(height: 24),
-        Text(AppStrings.passCHanged, style: AppStyles.medium24,textAlign: TextAlign.center,),
+        Text(
+          AppStrings.passCHanged,
+          style: AppStyles.medium24,
+          textAlign: TextAlign.center,
+        ),
         SizedBox(height: 12),
         Text(
           AppStrings.yourPassHasChanged,
@@ -43,9 +48,12 @@ class PasswordChangedContent extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         Spacer(),
-        CustomButton(text: 'Login', onPressed: () {
-          GoRouter.of(context).pushReplacement( AppRouter.kLoginView);
-        }),
+        CustomButton(
+          text: 'Login',
+          onPressed: () {
+            GoRouter.of(context).pushReplacement(AppRouter.kLoginView);
+          },
+        ),
       ],
     );
   }

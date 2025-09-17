@@ -12,10 +12,7 @@ class JobDetailDescription extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
-        Text(
-          "Job Description",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text("Job Description", style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         Text(job.jobDescription),
       ],

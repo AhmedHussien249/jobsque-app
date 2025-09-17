@@ -30,6 +30,4 @@ class AppAssets {
   static const notification2 = 'assets/icons/notification2.svg';
   static const loginAndSecurity = 'assets/icons/login and security.svg';
   static const noSavedJob = 'assets/images/no saved job.png';
-
-
 }

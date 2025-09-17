@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 
@@ -22,10 +21,7 @@ class TagRecentJob extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Text(
-        label,
-        style: AppStyles.regular12.copyWith(color: textColor),
-      ),
+      child: Text(label, style: AppStyles.regular12.copyWith(color: textColor)),
     );
   }
 }

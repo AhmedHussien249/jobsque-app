@@ -26,7 +26,8 @@ class HomeRepoImpl implements HomeRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
-   @override
+
+  @override
   Future<Either<ServerFailure, List<JobModel>>> searchJobs(String name) async {
     try {
       final response = await apiService.post(
@@ -43,45 +44,42 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-Future<Either<ServerFailure, List<JobModel>>> filterJobs({
-  String? name,
-  String? location,
-  String? salary,
-  Set<String>? jobTimeTypes,
-}) async {
-  try {
-    final Map<String, dynamic> data = {};
+  Future<Either<ServerFailure, List<JobModel>>> filterJobs({
+    String? name,
+    String? location,
+    String? salary,
+    Set<String>? jobTimeTypes,
+  }) async {
+    try {
+      final Map<String, dynamic> data = {};
 
-    if (name != null) data["name"] = name;
-    if (location != null) data["location"] = location;
-    if (salary != null) data["salary"] = salary;
+      if (name != null) data["name"] = name;
+      if (location != null) data["location"] = location;
+      if (salary != null) data["salary"] = salary;
 
-    
-  
-    final response = await apiService.post(
-      endPoint: "/jobs/filter",
-      data: data,
-    );
+      final response = await apiService.post(
+        endPoint: "/jobs/filter",
+        data: data,
+      );
 
-    List<JobModel> jobsList = (response.data['data'] as List)
-        .map((job) => JobModel.fromJson(job))
-        .toList();
+      List<JobModel> jobsList = (response.data['data'] as List)
+          .map((job) => JobModel.fromJson(job))
+          .toList();
 
-    
-    if (jobTimeTypes != null && jobTimeTypes.isNotEmpty) {
-  final normalizedSelectedTypes = jobTimeTypes.map((e) => e.toLowerCase().trim()).toSet();
+      if (jobTimeTypes != null && jobTimeTypes.isNotEmpty) {
+        final normalizedSelectedTypes = jobTimeTypes
+            .map((e) => e.toLowerCase().trim())
+            .toSet();
 
-  jobsList = jobsList.where((job) {
-    final jobType = job.jobTimeType.toLowerCase().trim();
-    return normalizedSelectedTypes.contains(jobType);
-  }).toList();
-}
+        jobsList = jobsList.where((job) {
+          final jobType = job.jobTimeType.toLowerCase().trim();
+          return normalizedSelectedTypes.contains(jobType);
+        }).toList();
+      }
 
-
-    return Right(jobsList);
-  } catch (e) {
-    return Left(ServerFailure(e.toString()));
+      return Right(jobsList);
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
-}
-
 }

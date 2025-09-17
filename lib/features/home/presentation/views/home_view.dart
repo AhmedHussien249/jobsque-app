@@ -20,7 +20,7 @@ class _HomeViewState extends State<HomeView> {
 
   final List<Widget> pages = [
     const HomeBody(),
-    //const MessagesPage(),
+    
     BlocProvider(create: (context) =>  sl<ShowAppliedJobCubit>(), child: const AppliedJobsView()),
     const SavedJobView(),
     const ProfileView(),
@@ -45,30 +45,3 @@ class _HomeViewState extends State<HomeView> {
   }
 }
 
-// Dummy Pages (ممكن تبدلهم بالـ widgets الحقيقية بتاعتك)
-// class MessagesPage extends StatelessWidget {
-//   const MessagesPage({super.key});
-//   @override
-//   Widget build(BuildContext context) =>
-//       const Center(child: Text('Messages Page'));
-// }
-
-// class AppliedPage extends StatelessWidget {
-//   const AppliedPage({super.key});
-//   @override
-//   Widget build(BuildContext context) =>
-//       const Center(child: Text('Applied Page'));
-// }
-
-// class SavedPage extends StatelessWidget {
-//   const SavedPage({super.key});
-//   @override
-//   Widget build(BuildContext context) => const Center(child: Text('Saved Page'));
-// }
-
-// class ProfilePage extends StatelessWidget {
-//   const ProfilePage({super.key});
-//   @override
-//   Widget build(BuildContext context) =>
-//       const Center(child: Text('Profile Page'));
-// }

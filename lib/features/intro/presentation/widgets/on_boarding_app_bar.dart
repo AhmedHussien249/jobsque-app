@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 
 class OnBoardingAppBar extends StatelessWidget {
   const OnBoardingAppBar({super.key, required this.onPressed});
- final VoidCallback onPressed;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

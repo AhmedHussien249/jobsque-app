@@ -32,7 +32,6 @@ class JobModel {
     );
   }
 
-   /// 🔹 نضيف ده عشان نقدر نخزنه في SharedPreferences
   Map<String, dynamic> toJson() {
     return {
       'id': id,

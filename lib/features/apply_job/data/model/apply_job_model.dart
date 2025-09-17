@@ -2,10 +2,7 @@ class ApplyJobModel {
   final bool status;
   final ApplyJobData? data;
 
-  ApplyJobModel({
-    required this.status,
-    this.data,
-  });
+  ApplyJobModel({required this.status, this.data});
 
   factory ApplyJobModel.fromJson(Map<String, dynamic> json) {
     return ApplyJobModel(

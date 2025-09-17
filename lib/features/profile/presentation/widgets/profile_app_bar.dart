@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
@@ -15,18 +14,10 @@ class ProfileAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            onPressed: () {
-              
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
           const Text(
             "Profile",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           IconButton(
             icon: const Icon(Icons.logout),
@@ -36,9 +27,7 @@ class ProfileAppBar extends StatelessWidget {
                 builder: (context) => AlertDialog(
                   backgroundColor: Colors.white,
                   title: const Text("Confirm Logout"),
-                  content: const Text(
-                    "Are you sure you want to logout?",
-                  ),
+                  content: const Text("Are you sure you want to logout?"),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context, false),

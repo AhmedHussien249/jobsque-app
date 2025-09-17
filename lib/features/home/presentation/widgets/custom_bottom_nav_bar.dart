@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
@@ -33,11 +31,7 @@ class CustomBottomNavBar extends StatelessWidget {
           icon: _navIcon(AppAssets.home, false),
           label: "Home",
         ),
-        // BottomNavigationBarItem(
-        //   activeIcon: _navIcon(AppAssets.message, true),
-        //   icon: _navIcon(AppAssets.message, false),
-        //   label: "Messages",
-        // ),
+
         BottomNavigationBarItem(
           activeIcon: _navIcon(AppAssets.briefcase, true),
           icon: _navIcon(AppAssets.briefcase, false),

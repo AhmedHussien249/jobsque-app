@@ -14,10 +14,7 @@ class JobDetailSkills extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
-        Text(
-          "Skill Required",
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
+        Text("Skill Required", style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,

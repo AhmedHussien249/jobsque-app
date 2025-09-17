@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 

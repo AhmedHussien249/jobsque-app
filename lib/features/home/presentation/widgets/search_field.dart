@@ -34,13 +34,12 @@ class SearchField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
-          borderSide: const BorderSide(color: Color(0xff3366FF), width:2 ),
+          borderSide: const BorderSide(color: Color(0xff3366FF), width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 10,
-          ),
-        
+          horizontal: 16,
+          vertical: 10,
+        ),
       ),
     );
   }

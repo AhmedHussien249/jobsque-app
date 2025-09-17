@@ -91,9 +91,8 @@ abstract class AppRouter {
       GoRoute(path: kHomeView, builder: (context, state) => const HomeView()),
       GoRoute(
         path: AppRouter.kSearchView,
-        builder: (context, state) => SearchView(
-          appPreferences: sl<AppPreferences>(),
-        ), 
+        builder: (context, state) =>
+            SearchView(appPreferences: sl<AppPreferences>()),
       ),
       GoRoute(
         path: '$kJobDetailView/:id',

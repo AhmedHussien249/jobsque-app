@@ -1,4 +1,3 @@
-
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -64,10 +63,9 @@ class PhoneInputField extends StatelessWidget {
                       border: InputBorder.none,
                       hintText: "123 456 789",
                     ),
-                    validator: (value) =>
-                        value == null || value.isEmpty
-                            ? "Please enter your mobile number"
-                            : null,
+                    validator: (value) => value == null || value.isEmpty
+                        ? "Please enter your mobile number"
+                        : null,
                   ),
                 ),
               ),

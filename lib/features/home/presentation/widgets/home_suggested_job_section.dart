@@ -2,28 +2,28 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_cubit.dart';
 import 'package:jobsque/features/home/presentation/view_model/cubits/suggested_job_cubits/job_state.dart';
 import 'package:jobsque/features/home/presentation/widgets/suggested_job_item.dart';
-import 'package:jobsque/core/utils/app_styles.dart';
 
 class HomeSuggestedJobSection extends StatefulWidget {
   const HomeSuggestedJobSection({super.key});
 
   @override
-  State<HomeSuggestedJobSection> createState() => _HomeSuggestedJobSectionState();
+  State<HomeSuggestedJobSection> createState() =>
+      _HomeSuggestedJobSectionState();
 }
 
 class _HomeSuggestedJobSectionState extends State<HomeSuggestedJobSection> {
   final PageController pageController = PageController();
   int currentPage = 0;
   Timer? timer;
-  
+
   @override
   void initState() {
     super.initState();
     startAutoScroll();
-   
   }
 
   void startAutoScroll() {
@@ -40,7 +40,8 @@ class _HomeSuggestedJobSectionState extends State<HomeSuggestedJobSection> {
       }
     });
   }
-    @override
+
+  @override
   void dispose() {
     timer?.cancel();
     pageController.dispose();
@@ -73,11 +74,11 @@ class _HomeSuggestedJobSectionState extends State<HomeSuggestedJobSection> {
                 return PageView.builder(
                   itemCount: state.jobs.length,
                   controller: pageController,
-            padEnds: false,
-            itemBuilder: (_, index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: SuggestedJopItem(job: state.jobs[index],),
-            ),
+                  padEnds: false,
+                  itemBuilder: (_, index) => Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: SuggestedJopItem(job: state.jobs[index]),
+                  ),
                 );
               } else if (state is JobsFailure) {
                 return Center(child: Text("Error: ${state.error}"));

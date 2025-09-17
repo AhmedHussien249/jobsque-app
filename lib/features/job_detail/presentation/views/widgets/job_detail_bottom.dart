@@ -4,7 +4,11 @@ import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 
 class JobDetailBottom extends StatelessWidget {
-  const JobDetailBottom({super.key, required this.jobId, required this.jobType});
+  const JobDetailBottom({
+    super.key,
+    required this.jobId,
+    required this.jobType,
+  });
   final int jobId;
   final String jobType;
 

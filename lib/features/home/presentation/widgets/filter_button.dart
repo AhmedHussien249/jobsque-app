@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:jobsque/core/utils/app_assets.dart';
@@ -15,11 +14,7 @@ class FilterButton extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: IconButton(
-          icon:  SvgPicture.asset(
-            AppAssets.setting,
-            width: 24,
-            height: 24,
-          ),
+          icon: SvgPicture.asset(AppAssets.setting, width: 24, height: 24),
           onPressed: onPressed,
         ),
       ),

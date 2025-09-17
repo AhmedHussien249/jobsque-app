@@ -1,4 +1,3 @@
-
 // ===== Job Card =====
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -50,7 +49,9 @@ class JobCard extends StatelessWidget {
                   JobTag(jobDetail.jobType),
                   const Spacer(),
                   Text(
-                    DateFormat('dd/MM/yyyy').format(DateTime.parse(appliedJob.createdAt)),
+                    DateFormat(
+                      'dd/MM/yyyy',
+                    ).format(DateTime.parse(appliedJob.createdAt)),
                     style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
                   ),
                 ],

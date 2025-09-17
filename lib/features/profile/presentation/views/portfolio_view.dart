@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -60,8 +61,10 @@ class _PortfolioViewState extends State<PortfolioView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Add portfolio here",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            const Text(
+              "Add portfolio here",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
 
             const SizedBox(height: 12),
 
@@ -73,21 +76,26 @@ class _PortfolioViewState extends State<PortfolioView> {
                 decoration: BoxDecoration(
                   color: Colors.blue.shade50,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.blue, style: BorderStyle.solid),
+                  border: Border.all(
+                    color: Colors.blue,
+                    style: BorderStyle.solid,
+                  ),
                 ),
                 child: Column(
-                  children:  [
+                  children: [
                     Icon(Icons.cloud_upload, size: 40, color: Colors.blue),
                     SizedBox(height: 8),
                     Text("Upload your other file"),
-                    Text("Max. file size 10 MB",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
+                    Text(
+                      "Max. file size 10 MB",
+                      style: TextStyle(color: Colors.grey, fontSize: 12),
+                    ),
                     SizedBox(height: 12),
                     OutlinedButton.icon(
                       onPressed: null,
                       icon: Icon(Icons.add),
                       label: Text("Add file"),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -102,8 +110,11 @@ class _PortfolioViewState extends State<PortfolioView> {
                   final file = files[index];
                   return Card(
                     child: ListTile(
-                      leading: const Icon(Icons.picture_as_pdf,
-                          color: Colors.red, size: 32),
+                      leading: const Icon(
+                        Icons.picture_as_pdf,
+                        color: Colors.red,
+                        size: 32,
+                      ),
                       title: Text(file.path.split('/').last),
                       subtitle: const Text("CV.pdf 300KB"),
                       trailing: Row(
