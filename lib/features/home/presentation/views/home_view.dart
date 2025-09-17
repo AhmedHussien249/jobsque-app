@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea( child: currentIndex == 1 || currentIndex == 2 
+      body: SafeArea( child: currentIndex == 1 || currentIndex == 2 || currentIndex == 3
       ? pages[currentIndex] 
       : SingleChildScrollView(child: pages[currentIndex]),
 ),

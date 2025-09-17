@@ -17,97 +17,99 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocListener<ProfileCubit, ProfileState>(
-        listener: (context, state) {
-          if (state is EditProfileSuccess) {
-            context.read<ProfileCubit>().getPortfolio();
-          }
-        },
-        child: BlocBuilder<ProfileCubit, ProfileState>(
-          builder: (context, state) {
-            if (state is GetPortfolioLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is GetPortfolioFailure) {
-              return Center(child: Text("Error: ${state.message}"));
-            } else if (state is GetPortfolioSuccess) {
-              final profile = state.data.profile;
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ProfileAppBar(),
-                    const SizedBox(height: 12),
-                    ProfileHeader(profile: profile),
-                    const SizedBox(height: 20),
-                    ProfileStats(),
-                    const SizedBox(height: 20),
-                    AboutSection(profile: profile),
-                    const SizedBox(height: 20),
-                    MenuSection(
-                      title: "General",
-                      items: [
-                        MenuItemData(
-                          iconUrl: AppAssets.editProfile,
-                          text: "Edit Profile",
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const EditProfileView(),
-                              ),
-                            );
-                          },
-                        ),
-                        MenuItemData(
-                          iconUrl: AppAssets.portfolio,
-                          text: "Portfolio",
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const PortfolioView(),
-                              ),
-                            );
-                          },
-                        ),
-                        MenuItemData(
-                          iconUrl: AppAssets.language,
-                          text: "Language",
-                        ),
-                        MenuItemData(
-                          iconUrl: AppAssets.notification2,
-                          text: "Notification",
-                        ),
-                        MenuItemData(
-                          iconUrl: AppAssets.loginAndSecurity,
-                          text: "Login and security",
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const LoginAndSecurityView(),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                    MenuSection(
-                      title: "Others",
-                      items: [
-                        MenuItemData(text: "Accessibility"),
-                        MenuItemData(text: "Help Center"),
-                        MenuItemData(text: "Terms & Conditions"),
-                        MenuItemData(text: "Privacy Policy"),
-                      ],
-                    ),
-                    const SizedBox(height: 30),
-                  ],
-                ),
-              );
+    return Scaffold(
+      body: SafeArea(
+        child: BlocListener<ProfileCubit, ProfileState>(
+          listener: (context, state) {
+            if (state is EditProfileSuccess) {
+              context.read<ProfileCubit>().getPortfolio();
             }
-            return const SizedBox();
           },
+          child: BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              if (state is GetPortfolioLoading) {
+                return Center(child: CircularProgressIndicator());
+              } else if (state is GetPortfolioFailure) {
+                return Center(child: Text("Error: ${state.message}"));
+              } else if (state is GetPortfolioSuccess) {
+                final profile = state.data.profile;
+                return SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ProfileAppBar(),
+                      const SizedBox(height: 12),
+                      ProfileHeader(profile: profile),
+                      const SizedBox(height: 20),
+                      ProfileStats(),
+                      const SizedBox(height: 20),
+                      AboutSection(profile: profile),
+                      const SizedBox(height: 20),
+                      MenuSection(
+                        title: "General",
+                        items: [
+                          MenuItemData(
+                            iconUrl: AppAssets.editProfile,
+                            text: "Edit Profile",
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const EditProfileView(),
+                                ),
+                              );
+                            },
+                          ),
+                          MenuItemData(
+                            iconUrl: AppAssets.portfolio,
+                            text: "Portfolio",
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const PortfolioView(),
+                                ),
+                              );
+                            },
+                          ),
+                          MenuItemData(
+                            iconUrl: AppAssets.language,
+                            text: "Language",
+                          ),
+                          MenuItemData(
+                            iconUrl: AppAssets.notification2,
+                            text: "Notification",
+                          ),
+                          MenuItemData(
+                            iconUrl: AppAssets.loginAndSecurity,
+                            text: "Login and security",
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const LoginAndSecurityView(),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                      MenuSection(
+                        title: "Others",
+                        items: [
+                          MenuItemData(text: "Accessibility"),
+                          MenuItemData(text: "Help Center"),
+                          MenuItemData(text: "Terms & Conditions"),
+                          MenuItemData(text: "Privacy Policy"),
+                        ],
+                      ),
+                      const SizedBox(height: 30),
+                    ],
+                  ),
+                );
+              }
+              return const SizedBox();
+            },
+          ),
         ),
       ),
     );

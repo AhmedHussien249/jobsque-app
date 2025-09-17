@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_cubit.dart';
 import 'package:jobsque/features/job_detail/presentation/view_model/cubits/job_detail_state.dart';
@@ -30,9 +31,9 @@ class _AppliedJobsViewState extends State<AppliedJobsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           "Applied Job",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: AppStyles.medium20
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jobsque/core/storage/app_preferences.dart';
 import 'package:jobsque/core/utils/app_router.dart';
+import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/core/utils/service_locator.dart';
 
 class ProfileAppBar extends StatelessWidget {
@@ -15,9 +16,9 @@ class ProfileAppBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_back)),
-          const Text(
+           Text(
             "Profile",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: AppStyles.medium20
           ),
           IconButton(
             icon: const Icon(Icons.logout),
