@@ -1,6 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jobsque/core/utils/app_router.dart';
 import 'package:jobsque/core/utils/app_styles.dart';
 import 'package:jobsque/features/apply_job/presentation/view_model/cubit/apply_job_cubit.dart';
 import 'package:jobsque/features/apply_job/presentation/view_model/cubit/apply_job_state.dart';
@@ -222,7 +224,7 @@ class _ApplyJobUploadPortfolioState extends State<ApplyJobUploadPortfolio> {
                       ),
                     ),
                   );
-                  Navigator.popUntil(context, (route) => route.isFirst);
+                  GoRouter.of(context).go(AppRouter.kHomeView);
                 } else if (state is ApplyJobFailure) {
                   ScaffoldMessenger.of(
                     context,
